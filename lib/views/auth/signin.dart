@@ -174,7 +174,7 @@ class _LoginPageState extends State<LoginPage> {
                               );
                             }
                           },
-                          child: const Text('Sign up'),
+                          child: const Text('Sign In'),
                         ),
                       ),
                       const SizedBox(
@@ -195,7 +195,7 @@ class _LoginPageState extends State<LoginPage> {
                               horizontal: 10,
                             ),
                             child: Text(
-                              'Sign up with',
+                              'Sign in with',
                               style: TextStyle(
                                 color: Colors.black45,
                               ),

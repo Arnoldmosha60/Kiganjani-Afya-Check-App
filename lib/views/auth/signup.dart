@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kiganjani_afya_check/views/auth/signin.dart';
 
 import '../../theme/theme.dart';
 import '../../widget/custom_scaffold.dart';
+import '../../widget/logo.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -239,6 +241,18 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                       const SizedBox(
                         height: 30.0,
+                      ),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Logo(FontAwesomeIcons.facebookF),
+                          Logo(FontAwesomeIcons.twitter),
+                          Logo(FontAwesomeIcons.google),
+                          Logo(FontAwesomeIcons.apple),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 25.0,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
