@@ -11,6 +11,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   lottie: ^3.1.2
   icons_plus: ^5.0.0
+  font_awesome_flutter: ^10.7.0
 
 dev_dependencies:
   flutter_test:
