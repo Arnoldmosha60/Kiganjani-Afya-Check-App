@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kiganjani_afya_check/views/auth/signup.dart';
 
 import '../../theme/theme.dart';
 import '../../widget/custom_scaffold.dart';
+import '../../widget/logo.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -172,7 +174,7 @@ class _LoginPageState extends State<LoginPage> {
                               );
                             }
                           },
-                          child: const Text('Sign up'),
+                          child: const Text('Sign In'),
                         ),
                       ),
                       const SizedBox(
@@ -193,7 +195,7 @@ class _LoginPageState extends State<LoginPage> {
                               horizontal: 10,
                             ),
                             child: Text(
-                              'Sign up with',
+                              'Sign in with',
                               style: TextStyle(
                                 color: Colors.black45,
                               ),
@@ -205,6 +207,18 @@ class _LoginPageState extends State<LoginPage> {
                               color: Colors.grey.withOpacity(0.5),
                             ),
                           ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 25.0,
+                      ),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Logo(FontAwesomeIcons.facebookF),
+                          Logo(FontAwesomeIcons.twitter),
+                          Logo(FontAwesomeIcons.google),
+                          Logo(FontAwesomeIcons.apple),
                         ],
                       ),
                       const SizedBox(

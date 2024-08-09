@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'auth/welcome_back.dart';
 
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -31,8 +30,10 @@ class _SplashScreenState extends State<SplashScreen>
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Center the animation
-            Lottie.asset('assets/animations/Splash-Animation.json',
-                height: 300),
+            Lottie.asset(
+              'assets/animations/Splash-Animation.json',
+              height: 300,
+            ),
             const SizedBox(height: 20),
             const Text(
               'Stay Fit, Stay Healthy',
