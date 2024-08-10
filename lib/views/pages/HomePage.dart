@@ -1,5 +1,3 @@
-// ignore_for_file: sized_box_for_whitespace
-
 import 'package:flutter/material.dart';
 import 'package:kiganjani_afya_check/theme/app_theme.dart';
 import 'package:kiganjani_afya_check/views/drawer/home_screen.dart';
@@ -17,6 +15,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   List<HomeList> homeList = HomeList.homeList;
   AnimationController? animationController;
   bool multiple = true;
+  int _selectedIndex = 0;
 
   @override
   void initState() {
@@ -36,12 +35,64 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     super.dispose();
   }
 
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const AgeSexPage()),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isLightMode = brightness == Brightness.light;
     return Scaffold(
-      backgroundColor: isLightMode == true ? AppTheme.white : AppTheme.nearlyBlack,
+      backgroundColor: AppTheme.white,
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: isLightMode ? AppTheme.nearlyBlack : AppTheme.white,
+              ),
+              child: Text(
+                'Menu',
+                style: TextStyle(
+                  color: isLightMode ? AppTheme.white : AppTheme.darkText,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text('Home'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text('Profile'),
+              onTap: () {
+                // Add navigation to profile screen
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
+              onTap: () {
+                // Add navigation to settings screen
+              },
+            ),
+          ],
+        ),
+      ),
       body: FutureBuilder<bool>(
         future: getData(),
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
@@ -58,15 +109,18 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   Expanded(
                     child: FutureBuilder<bool>(
                       future: getData(),
-                      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                      builder:
+                          (BuildContext context, AsyncSnapshot<bool> snapshot) {
                         if (!snapshot.hasData) {
                           return const SizedBox();
                         } else {
                           return GridView(
-                            padding: const EdgeInsets.only(top: 0, left: 12, right: 12),
+                            padding: const EdgeInsets.only(
+                                top: 0, left: 12, right: 12),
                             physics: const BouncingScrollPhysics(),
                             scrollDirection: Axis.vertical,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            gridDelegate:
+                            SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: multiple ? 2 : 1,
                               mainAxisSpacing: 12.0,
                               crossAxisSpacing: 12.0,
@@ -74,13 +128,17 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                             ),
                             children: List<Widget>.generate(
                               homeList.length,
-                              (int index) {
+                                  (int index) {
                                 final int count = homeList.length;
                                 final Animation<double> animation =
-                                    Tween<double>(begin: 0.0, end: 1.0).animate(
+                                Tween<double>(begin: 0.0, end: 1.0).animate(
                                   CurvedAnimation(
                                     parent: animationController!,
-                                    curve: Interval((1 / count) * index, 1.0, curve: Curves.fastOutSlowIn),
+                                    curve: Interval(
+                                      (1 / count) * index,
+                                      1.0,
+                                      curve: Curves.fastOutSlowIn,
+                                    ),
                                   ),
                                 );
                                 animationController?.forward();
@@ -92,7 +150,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                     Navigator.push<dynamic>(
                                       context,
                                       MaterialPageRoute<dynamic>(
-                                        builder: (BuildContext context) => homeList[index].navigateScreen!,
+                                        builder: (BuildContext context) =>
+                                        homeList[index].navigateScreen!,
                                       ),
                                     );
                                   },
@@ -104,20 +163,26 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       },
                     ),
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => AgeSexPage()),
-                      );
-                    },
-                    child: const Text('Start'),
-                  ),
                 ],
               ),
             );
           }
         },
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assessment),
+            label: 'Age/Sex',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue,
+        onTap: _onItemTapped,
       ),
     );
   }
@@ -125,58 +190,45 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   Widget appBar() {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isLightMode = brightness == Brightness.light;
-    return SizedBox(
-      height: AppBar().preferredSize.height,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top: 8, left: 8),
-            child: Container(
-              width: AppBar().preferredSize.height - 8,
-              height: AppBar().preferredSize.height - 8,
-            ),
+    return AppBar(
+      backgroundColor: Colors.blue,
+      title: Padding(
+        padding: const EdgeInsets.only(top: 4),
+        child: Text(
+          'Kiganjani Afya Check',
+          style: TextStyle(
+            fontSize: 22,
+            color: isLightMode ? AppTheme.darkText : AppTheme.white,
+            fontWeight: FontWeight.w700,
           ),
-          Expanded(
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 4),
-                child: Text(
-                  'Flutter UI',
-                  style: TextStyle(
-                    fontSize: 22,
-                    color: isLightMode ? AppTheme.darkText : AppTheme.white,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8, right: 8),
-            child: Container(
-              width: AppBar().preferredSize.height - 8,
-              height: AppBar().preferredSize.height - 8,
-              color: isLightMode ? Colors.white : AppTheme.nearlyBlack,
-              child: Material(
-                color: Colors.transparent,
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(AppBar().preferredSize.height),
-                  child: Icon(
-                    multiple ? Icons.dashboard : Icons.view_agenda,
-                    color: isLightMode ? AppTheme.dark_grey : AppTheme.white,
-                  ),
-                  onTap: () {
-                    setState(() {
-                      multiple = !multiple;
-                    });
-                  },
-                ),
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.only(top: 8, right: 8),
+          child: Container(
+            width: AppBar().preferredSize.height - 8,
+            height: AppBar().preferredSize.height - 8,
+            color: isLightMode ? Colors.white : AppTheme.nearlyBlack,
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius:
+                BorderRadius.circular(AppBar().preferredSize.height),
+                child: Icon(
+                  multiple ? Icons.dashboard : Icons.view_agenda,
+                  color: isLightMode ? AppTheme.dark_grey : AppTheme.white,
+                ),
+                onTap: () {
+                  setState(() {
+                    multiple = !multiple;
+                  });
+                },
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
