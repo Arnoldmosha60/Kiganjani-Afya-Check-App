@@ -15,22 +15,44 @@ class _AgeSexPageState extends State<AgeSexPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Enter Age and Sex')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: _ageController,
-              decoration: const InputDecoration(labelText: 'Age'),
-              keyboardType: TextInputType.number,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: ListTile(
-                    title: const Text('Male'),
-                    leading: Radio<String>(
+      appBar: AppBar(
+        title: const Text('Enter Age and Sex'),
+        centerTitle: true,
+        backgroundColor: Colors.blueAccent,
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Age',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: _ageController,
+                decoration: InputDecoration(
+                  labelText: 'Enter your age',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  prefixIcon: const Icon(Icons.calendar_today),
+                ),
+                keyboardType: TextInputType.number,
+              ),
+              const SizedBox(height: 30),
+              const Text(
+                'Sex',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  Expanded(
+                    child: RadioListTile<String>(
+                      title: const Text('Male'),
                       value: 'Male',
                       groupValue: _sex,
                       onChanged: (value) {
@@ -40,11 +62,9 @@ class _AgeSexPageState extends State<AgeSexPage> {
                       },
                     ),
                   ),
-                ),
-                Expanded(
-                  child: ListTile(
-                    title: const Text('Female'),
-                    leading: Radio<String>(
+                  Expanded(
+                    child: RadioListTile<String>(
+                      title: const Text('Female'),
                       value: 'Female',
                       groupValue: _sex,
                       onChanged: (value) {
@@ -54,37 +74,41 @@ class _AgeSexPageState extends State<AgeSexPage> {
                       },
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HeightWeightPage(
-                      age: _ageController.text,
-                      sex: _sex,
+                ],
+              ),
+              const SizedBox(height: 40),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HeightWeightPage(
+                          age: _ageController.text,
+                          sex: _sex,
+                        ),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blueAccent,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
                     ),
+                    textStyle: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    elevation: 5,
+                    shadowColor: Colors.blueAccent.withOpacity(0.5),
                   ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blueAccent, // Background color
-                foregroundColor: Colors.white, // Text color
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                textStyle: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+                  child: const Text('Next'),
                 ),
               ),
-              child: const Text('Next'),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

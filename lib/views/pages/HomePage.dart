@@ -39,11 +39,30 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     setState(() {
       _selectedIndex = index;
     });
-    if (index == 1) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const AgeSexPage()),
-      );
+
+    switch (index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const Home()), // Assuming HomeScreen is your home screen
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const AgeSexPage()),
+        );
+        break;
+    // Add navigation for new items
+      case 2:
+      // Handle navigation for third item
+        break;
+      case 3:
+      // Handle navigation for fourth item
+        break;
+      case 4:
+      // Handle navigation for fifth item
+        break;
     }
   }
 
@@ -170,6 +189,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed, // Ensures all items are displayed with fixed width
+        backgroundColor: Colors.blue, // Sets the background color of the navigation bar
+        selectedItemColor: Colors.white, // Sets the color of the selected item
+        unselectedItemColor: Colors.white70, // Sets the color of the unselected items
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -179,11 +202,23 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             icon: Icon(Icons.assessment),
             label: 'Age/Sex',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.info),
+            label: 'About',
+          ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
         onTap: _onItemTapped,
       ),
+
     );
   }
 
