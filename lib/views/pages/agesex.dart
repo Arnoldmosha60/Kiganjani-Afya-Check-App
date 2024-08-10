@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kiganjani_afya_check/views/pages/heightweight.dart';
 
 class AgeSexPage extends StatefulWidget {
+  const AgeSexPage({super.key});
+
   @override
   _AgeSexPageState createState() => _AgeSexPageState();
 }
@@ -68,6 +70,18 @@ class _AgeSexPageState extends State<AgeSexPage> {
                   ),
                 );
               },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blueAccent, // Background color
+                foregroundColor: Colors.white, // Text color
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                textStyle: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               child: const Text('Next'),
             ),
           ],
