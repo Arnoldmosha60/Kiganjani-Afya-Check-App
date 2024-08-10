@@ -181,7 +181,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.assessment),
-            label: 'Age/Sex',
+            label: 'help',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
