@@ -1,5 +1,3 @@
-// ignore_for_file: sized_box_for_whitespace
-
 import 'package:flutter/material.dart';
 import 'package:kiganjani_afya_check/theme/app_theme.dart';
 import 'package:kiganjani_afya_check/views/drawer/home_screen.dart';
@@ -54,7 +52,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           MaterialPageRoute(builder: (context) => const AgeSexPage()),
         );
         break;
-    // Add navigation for new items
       case 2:
       // Handle navigation for third item
         break;
@@ -72,7 +69,69 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isLightMode = brightness == Brightness.light;
     return Scaffold(
-      backgroundColor: isLightMode == true ? AppTheme.white : const Color(0xFF1A73E8),
+      backgroundColor: isLightMode ? AppTheme.white : const Color(0xFF1A73E8),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: isLightMode ? Colors.blue : Colors.blueGrey,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 30,
+                    child: Icon(Icons.person, size: 40, color: isLightMode ? Colors.blue : Colors.white),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Dr.Silas',
+                    style: TextStyle(
+                      color: isLightMode ? Colors.white : Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text('Home'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Home()),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text('Profile'),
+              onTap: () {
+                // Add navigation to profile screen
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
+              onTap: () {
+                // Add navigation to settings screen
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.info),
+              title: const Text('About'),
+              onTap: () {
+                // Add navigation to about screen
+              },
+            ),
+          ],
+        ),
+      ),
       body: FutureBuilder<bool>(
         future: getData(),
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
@@ -105,10 +164,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                             ),
                             children: List<Widget>.generate(
                               homeList.length,
-                              (int index) {
+                                  (int index) {
                                 final int count = homeList.length;
                                 final Animation<double> animation =
-                                    Tween<double>(begin: 0.0, end: 1.0).animate(
+                                Tween<double>(begin: 0.0, end: 1.0).animate(
                                   CurvedAnimation(
                                     parent: animationController!,
                                     curve: Interval((1 / count) * index, 1.0, curve: Curves.fastOutSlowIn),
@@ -196,7 +255,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             label: 'About',
           ),
         ],
-        // currentIndex: _selectedIndex,
         onTap: _onItemTapped,
       ),
     );
@@ -212,9 +270,22 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(top: 8, left: 8),
-            child: Container(
-              width: AppBar().preferredSize.height - 8,
-              height: AppBar().preferredSize.height - 8,
+            child: Builder(
+              builder: (BuildContext context) {
+                return Container(
+                  width: AppBar().preferredSize.height - 8,
+                  height: AppBar().preferredSize.height - 8,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.menu,
+                      color: isLightMode ? AppTheme.dark_grey : AppTheme.white,
+                    ),
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                  ),
+                );
+              },
             ),
           ),
           Expanded(
@@ -232,31 +303,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8, right: 8),
-            child: Container(
-              width: AppBar().preferredSize.height - 8,
-              height: AppBar().preferredSize.height - 8,
-              color: isLightMode ? Colors.white : Color.fromARGB(255, 36, 33, 51),
-              child: Material(
-                color: Colors.transparent,
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(AppBar().preferredSize.height),
-                  child: Icon(
-                    multiple ? Icons.dashboard : Icons.view_agenda,
-                    color: isLightMode ? AppTheme.dark_grey : AppTheme.white,
-                  ),
-                  onTap: () {
-                    setState(() {
-                      multiple = !multiple;
-                    });
-                  },
-                ),
-              ),
-            ),
-          ),
         ],
       ),
     );
   }
+
 }
