@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kiganjani_afya_check/views/pages/HomePage.dart';
+import 'package:lottie/lottie.dart';
 
 class HeightEntryPage extends StatefulWidget {
   @override
@@ -7,38 +9,48 @@ class HeightEntryPage extends StatefulWidget {
 
 class _HeightEntryPageState extends State<HeightEntryPage> {
   final TextEditingController _heightController = TextEditingController();
-  dynamic _errorText;
-  String _selectedUnit = 'cm'; // Default unit
+  final TextEditingController _weightController = TextEditingController();
+  String? _heightErrorText;
+  String? _weightErrorText;
+  String _selectedHeightUnit = 'cm'; // Default height unit
+  String _selectedWeightUnit = 'kg'; // Default weight unit
 
   @override
   void initState() {
     super.initState();
-    _errorText = null;
+    _heightErrorText = null;
+    _weightErrorText = null;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(
-          'KUREFU',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-          ),
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0,
-      ),
+      // appBar: AppBar(
+      //   title: const Text(
+      //     'KUREFU',
+      //     style: TextStyle(
+      //       color: Colors.black,
+      //       fontSize: 20,
+      //     ),
+      //   ),
+      //   backgroundColor: Colors.white,
+      //   elevation: 0,
+      // ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 20),
-              Text(
+              const SizedBox(height: 20),
+              Lottie.asset(
+                'assets/animations/gender_animation.json',
+                height: 150,
+                fit: BoxFit.contain,
+              ),
+              const SizedBox(height: 20),
+              const Text(
                 'KUREFU',
                 style: TextStyle(
                   fontSize: 32,
@@ -47,19 +59,19 @@ class _HeightEntryPageState extends State<HeightEntryPage> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 10),
-              Text(
-                'Ingiza urefu wako kwa inchi au cm',
+              const SizedBox(height: 10),
+              const Text(
+                'Ingiza urefu wako na uzito wako',
                 style: TextStyle(
                   fontSize: 18,
                   color: Colors.black,
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               // Height entry section
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   color: Colors.grey.shade200,
@@ -68,7 +80,7 @@ class _HeightEntryPageState extends State<HeightEntryPage> {
                       color: Colors.grey.withOpacity(0.3),
                       spreadRadius: 2,
                       blurRadius: 5,
-                      offset: Offset(0, 3),
+                      offset: const Offset(0, 3),
                     ),
                   ],
                 ),
@@ -84,73 +96,132 @@ class _HeightEntryPageState extends State<HeightEntryPage> {
                               border: InputBorder.none,
                               labelText: 'Urefu',
                               hintText: 'Ingiza urefu wako',
-                              errorText: _errorText,
+                              errorText: _heightErrorText,
                             ),
                             onChanged: (value) {
                               setState(() {
-                                _errorText = (_validateHeight(value) ? null : 'Tafadhali ingiza urefu sahihi')!;
+                                _heightErrorText = _validateHeight(value)
+                                    ? null
+                                    : 'Tafadhali ingiza urefu sahihi';
                               });
                             },
                           ),
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         DropdownButton<String>(
-                          value: _selectedUnit,
+                          value: _selectedHeightUnit,
                           onChanged: (newValue) {
                             setState(() {
-                              _selectedUnit = newValue!;
+                              _selectedHeightUnit = newValue!;
                             });
                           },
-                          items: <String>['cm', 'inchi']
+                          items: <String>['cm', 'ft']
                               .map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
                               child: Text(value),
                             );
                           }).toList(),
-                          underline: SizedBox(),
-                          icon: Icon(Icons.arrow_drop_down),
+                          underline: const SizedBox(),
+                          icon: const Icon(Icons.arrow_drop_down),
                         ),
                       ],
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 20),
-              // Images representing different heights
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/images/short_person.png',
-                    height: 120,
-                    fit: BoxFit.contain,
-                  ),
-                  SizedBox(width: 20),
-                  Image.asset(
-                    'assets/images/average_person.png',
-                    height: 120,
-                    fit: BoxFit.contain,
-                  ),
-                  SizedBox(width: 20),
-                  Image.asset(
-                    'assets/images/tall_person.png',
-                    height: 120,
-                    fit: BoxFit.contain,
-                  ),
-                ],
+              const SizedBox(height: 20),
+              // Weight entry section
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.grey.shade200,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.3),
+                      spreadRadius: 2,
+                      blurRadius: 5,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            controller: _weightController,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              labelText: 'Uzito',
+                              hintText: 'Ingiza uzito wako',
+                              errorText: _weightErrorText,
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                _weightErrorText = _validateWeight(value)
+                                    ? null
+                                    : 'Tafadhali ingiza uzito sahihi';
+                              });
+                            },
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        DropdownButton<String>(
+                          value: _selectedWeightUnit,
+                          onChanged: (newValue) {
+                            setState(() {
+                              _selectedWeightUnit = newValue!;
+                            });
+                          },
+                          items: <String>['kg', 'lbs']
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                          underline: const SizedBox(),
+                          icon: const Icon(Icons.arrow_drop_down),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  // Handle button press
+                  if (_validateForm()) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Home()),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                          content: Text('Tafadhali jaza fomu sahihi')),
+                    );
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue.shade700,
-                  padding: EdgeInsets.symmetric(vertical: 16),
-                  textStyle: TextStyle(fontSize: 18),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+                  textStyle: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12), // Rounded edges
+                  ),
+                  shadowColor: Colors.black,
+                  elevation: 5,
                 ),
-                child: Text('Endelea'),
+                child: const Text('Endelea',
+                    style: TextStyle(color: Colors.white)),
               ),
             ],
           ),
@@ -161,13 +232,18 @@ class _HeightEntryPageState extends State<HeightEntryPage> {
 
   bool _validateHeight(String value) {
     if (value.isEmpty) return false;
-    final height = int.tryParse(value);
+    final height = double.tryParse(value);
     return height != null && height > 0;
   }
-}
 
-void main() {
-  runApp(MaterialApp(
-    home: HeightEntryPage(),
-  ));
+  bool _validateWeight(String value) {
+    if (value.isEmpty) return false;
+    final weight = double.tryParse(value);
+    return weight != null && weight > 0;
+  }
+
+  bool _validateForm() {
+    return _validateHeight(_heightController.text) &&
+        _validateWeight(_weightController.text);
+  }
 }
