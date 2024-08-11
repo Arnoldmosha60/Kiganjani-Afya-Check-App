@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kiganjani_afya_check/views/pages/age.dart';
+import 'package:kiganjani_afya_check/views/pages/height.dart';
+import 'package:kiganjani_afya_check/views/pages/sex.dart';
 import 'package:kiganjani_afya_check/views/splash_screen.dart';
 // import 'custom_drawer/home_drawer.dart';
 // import 'package:kiganjani_afya_check/views/drawer/navigation_home_screen.dart';
@@ -14,12 +17,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Health Journey',
+      title: 'kiganjani Afya Check ',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.teal,
+        primarySwatch: Colors.blue,
       ),
-      home:  const SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }

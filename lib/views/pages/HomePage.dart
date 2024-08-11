@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:kiganjani_afya_check/theme/app_theme.dart';
 import 'package:kiganjani_afya_check/views/drawer/home_screen.dart';
 import 'package:kiganjani_afya_check/views/homelist.dart';
-import 'package:kiganjani_afya_check/views/pages/agesex.dart'; // Import the AgeSexPage
+import 'package:kiganjani_afya_check/views/pages/age.dart';
+import 'package:kiganjani_afya_check/views/pages/agesex.dart';
+import 'package:kiganjani_afya_check/views/pages/sex.dart'; // Import the AgeSexPage
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -49,7 +51,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       case 1:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const AgeSexPage()),
+          MaterialPageRoute(builder: (context) => AgeGroupPage()),
         );
         break;
       case 2:
@@ -69,7 +71,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isLightMode = brightness == Brightness.light;
     return Scaffold(
-      backgroundColor: isLightMode ? AppTheme.white : const Color(0xFF1A73E8),
+      backgroundColor: isLightMode ? AppTheme.white : AppTheme.chipBackground,
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -199,6 +201,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     padding: const EdgeInsets.only(bottom: 40.0), // Add padding to position the card
                     child: Card(
                       elevation: 4,
+                      color: Colors.blueAccent,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
                       ),
@@ -206,13 +209,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => AgeSexPage()),
+                            MaterialPageRoute(builder: (context) => AgeGroupPage()),
                           );
                         },
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                           child: const Text(
-                            'Get Started',
+                            'Anza Sasa',
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -230,7 +233,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed, // Ensures all items are displayed with fixed width
-        backgroundColor: Colors.blue, // Sets the background color of the navigation bar
+        backgroundColor: Colors.blueAccent, // Sets the background color of the navigation bar
         selectedItemColor: Colors.white, // Sets the color of the selected item
         unselectedItemColor: Colors.white70, // Sets the color of the unselected items
         items: const <BottomNavigationBarItem>[
@@ -278,7 +281,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   child: IconButton(
                     icon: Icon(
                       Icons.menu,
-                      color: isLightMode ? AppTheme.dark_grey : AppTheme.white,
+                      color: isLightMode ? AppTheme.darkText : AppTheme.grey,
                     ),
                     onPressed: () {
                       Scaffold.of(context).openDrawer();
@@ -296,7 +299,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   'KIGANJANI AFYA CHECK',
                   style: TextStyle(
                     fontSize: 22,
-                    color: isLightMode ? AppTheme.darkText : AppTheme.white,
+                    color: isLightMode ? AppTheme.darkText : AppTheme.grey,
                     fontWeight: FontWeight.w700,
                   ),
                 ),

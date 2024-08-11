@@ -6,7 +6,7 @@ version: 1.0.0+1
 environment:
   sdk: '>=3.2.6 <4.0.0'
 dependencies:
-  web: ^0.3.0
+  web: ^1.0.0
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
@@ -16,10 +16,15 @@ dependencies:
   google_nav_bar: ^5.0.6
   flutter_launcher_icons: ^0.13.1
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: assets/appicon/kiganjani.png
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^4.0.0
 flutter:
   uses-material-design: true
 
@@ -27,6 +32,7 @@ flutter:
   assets:
     - assets/images/
     - assets/animations/
+    - assets/appicon/kiganjani.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

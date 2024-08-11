@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        'Welcome back',
+                        'KARIBU',
                         style: TextStyle(
                           fontSize: 30.0,
                           fontWeight: FontWeight.w900,
@@ -60,13 +60,13 @@ class _LoginPageState extends State<LoginPage> {
                       TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter Email';
+                            return 'Tafadhari Ingiza Barua Pepe';
                           }
                           return null;
                         },
                         decoration: InputDecoration(
-                          label: const Text('Email'),
-                          hintText: 'Enter Email',
+                          label: const Text('Barua Pepe'),
+                          hintText: 'Ingiza Barua Pepe',
                           hintStyle: const TextStyle(
                             color: Colors.black26,
                           ),
@@ -92,13 +92,13 @@ class _LoginPageState extends State<LoginPage> {
                         obscuringCharacter: '*',
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter Password';
+                            return 'Tafadhali ingiza Nenosiri';
                           }
                           return null;
                         },
                         decoration: InputDecoration(
-                          label: const Text('Password'),
-                          hintText: 'Enter Password',
+                          label: const Text('Nenosiri'),
+                          hintText: 'Ingiza Nenosiri',
                           hintStyle: const TextStyle(
                             color: Colors.black26,
                           ),
