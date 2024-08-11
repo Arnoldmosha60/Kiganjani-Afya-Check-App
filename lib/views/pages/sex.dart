@@ -1,17 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:kiganjani_afya_check/views/pages/age.dart';
 
-class AgeGroupPage extends StatelessWidget {
+class AgeGroupPage extends StatefulWidget {
+  @override
+  _AgeGroupPageState createState() => _AgeGroupPageState();
+}
+
+class _AgeGroupPageState extends State<AgeGroupPage> {
+  String _selectedGender = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      // appBar: AppBar(
+      //   title: const Text('Kiganjani Afya Check', style: TextStyle(color: Colors.black)),
+      //   backgroundColor: Colors.white,
+      //   elevation: 0,
+      // ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
+              const SizedBox(height: 20),
+              Lottie.asset(
+                'assets/animations/gender_animation.json',
+                height: 200,
+                fit: BoxFit.contain,
+              ),
               const SizedBox(height: 20),
               const Text(
                 'JINSIA',
@@ -30,25 +49,49 @@ class AgeGroupPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 40),
-              Expanded(
-                child: GridView.count(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 20,
-                  crossAxisSpacing: 20,
-                  children: <Widget>[
-                    _buildAgeGroupCard(
-                      context,
-                      'assets/images/male.png',
-                      'KIUME',
-                      AgeEntryPage(), // Replace with your actual page
-                    ),
-                    _buildAgeGroupCard(
-                      context,
-                      'assets/images/female.png',
-                      'KIKE',
-                      AgeEntryPage(), // Replace with your actual page
-                    ),
-                  ],
+              Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                elevation: 4,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: <Widget>[
+                      ListTile(
+                        title: const Text('Me'),
+                        leading: Radio<String>(
+                          value: 'male',
+                          groupValue: _selectedGender,
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedGender = value!;
+                            });
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => AgeEntryPage()),
+                            );
+                          },
+                        ),
+                      ),
+                      ListTile(
+                        title: const Text('Ke'),
+                        leading: Radio<String>(
+                          value: 'female',
+                          groupValue: _selectedGender,
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedGender = value!;
+                            });
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => AgeEntryPage()),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
@@ -67,57 +110,7 @@ class AgeGroupPage extends StatelessWidget {
       ),
     );
   }
-
-  Widget _buildAgeGroupCard(BuildContext context, String imagePath, String label, Widget nextPage) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => nextPage),
-        );
-      },
-      child: Column(
-        children: <Widget>[
-          // Increased Image Height to 250
-          Image.asset(
-            imagePath,
-            height: 100,
-            fit: BoxFit.contain,
-          ),
-          // Removed SizedBox to reduce space between image and card
-          // The Card, now touching the image
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: Colors.blue.shade700,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.3),
-                  spreadRadius: 3,
-                  blurRadius: 5,
-                  offset: const Offset(0, 3),
-                ),
-              ],
-            ),
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            alignment: Alignment.center,
-            child: Text(
-              label,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }
-
-
-
 
 void main() {
   runApp(MaterialApp(
