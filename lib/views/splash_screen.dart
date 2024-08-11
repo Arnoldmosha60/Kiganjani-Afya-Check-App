@@ -46,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen>
             ),
             const SizedBox(height: 10),
             const Text(
-              'Welcome to Kiganjani Afya Check',
+              'Karibu kwenye Kiganjani Afya Check',
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.white,
@@ -55,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen>
             ),
             const SizedBox(height: 20),
             const Text(
-              'Your journey to a healthier lifestyle starts here.\nTrack your weight, stay active, and reach your goals with ease.\nGet ready to transform your life!',
+              'Safari yako ya maisha yenye afya huanza hapa\nFuata uzani wako, baki kuwa na shughuli, na fika malengo yako kwa urahisi. \nJiandae kubadilisha maisha yako!',
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.white70,

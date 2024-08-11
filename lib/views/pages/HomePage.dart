@@ -239,23 +239,23 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: 'Nyumbani',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.assessment),
-            label: 'help',
+            label: 'Msaada',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Profile',
+            label: 'Wasifu',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: 'Settings',
+            label: 'Mipangilio',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.info),
-            label: 'About',
+            label: 'Kuhusu',
           ),
         ],
         onTap: _onItemTapped,
