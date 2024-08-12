@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kiganjani_afya_check/views/pages/HomePage.dart';
-import 'package:lottie/lottie.dart';
 
 class HeightEntryPage extends StatefulWidget {
   @override
@@ -26,17 +25,6 @@ class _HeightEntryPageState extends State<HeightEntryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      // appBar: AppBar(
-      //   title: const Text(
-      //     'KUREFU',
-      //     style: TextStyle(
-      //       color: Colors.black,
-      //       fontSize: 20,
-      //     ),
-      //   ),
-      //   backgroundColor: Colors.white,
-      //   elevation: 0,
-      // ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -44,14 +32,14 @@ class _HeightEntryPageState extends State<HeightEntryPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 20),
-              Lottie.asset(
-                'assets/animations/gender_animation.json',
+              Image.asset(
+                'assets/images/height11.png', // Add your image here
                 height: 150,
                 fit: BoxFit.contain,
               ),
               const SizedBox(height: 20),
               const Text(
-                'KUREFU',
+                'UREFU',
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:kiganjani_afya_check/main.dart';
 import 'package:kiganjani_afya_check/views/auth/signin.dart';
 import 'package:kiganjani_afya_check/views/pages/HomePage.dart';
+import 'package:kiganjani_afya_check/views/pages/startup.dart';
 import '../../theme/theme.dart';
 import '../../widget/custom_scaffold.dart';
 import '../../widget/logo.dart';
@@ -194,7 +196,7 @@ class _SignupPageState extends State<SignupPage> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const Home(),
+                                  builder: (context) => StartPage(),
                                 ),
                               );
                             } else if (!agreePersonalData) {
