@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kiganjani_afya_check/views/auth/signin.dart';
-
+import 'package:kiganjani_afya_check/views/pages/HomePage.dart';
 import '../../theme/theme.dart';
 import '../../widget/custom_scaffold.dart';
+import '../../widget/logo.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -151,7 +153,7 @@ class _SignupPageState extends State<SignupPage> {
                       const SizedBox(
                         height: 25.0,
                       ),
-                      // i agree to the processing
+                      // I agree to the processing
                       Row(
                         children: [
                           Checkbox(
@@ -188,9 +190,11 @@ class _SignupPageState extends State<SignupPage> {
                           onPressed: () {
                             if (_formSignupKey.currentState!.validate() &&
                                 agreePersonalData) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Processing Data'),
+                              // Navigate to HomePage on successful validation
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const Home(),
                                 ),
                               );
                             } else if (!agreePersonalData) {
@@ -239,6 +243,18 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                       const SizedBox(
                         height: 30.0,
+                      ),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Logo(FontAwesomeIcons.facebookF),
+                          Logo(FontAwesomeIcons.twitter),
+                          Logo(FontAwesomeIcons.google),
+                          Logo(FontAwesomeIcons.apple),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 25.0,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
