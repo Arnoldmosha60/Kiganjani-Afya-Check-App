@@ -27,14 +27,14 @@ class WelcomeBack extends StatelessWidget {
                     text: const TextSpan(
                       children: [
                         TextSpan(
-                            text: 'Welcome Back!\n',
+                            text: 'Karibu Tena!\n',
                             style: TextStyle(
                               fontSize: 45.0,
                               fontWeight: FontWeight.w600,
                             )),
                         TextSpan(
                             text:
-                            '\nEnter personal details to proceed with the program',
+                            '\nIngiza maelezo binafsi ili kuendelea na programu',
                             style: TextStyle(
                               fontSize: 20,
                               // height: 0,
@@ -52,7 +52,7 @@ class WelcomeBack extends StatelessWidget {
                 children: [
                   const Expanded(
                     child: WelcomeButton(
-                      buttonText: 'Sign in',
+                      buttonText: 'Ingia',
                       onTap: LoginPage(),
                       color: Colors.transparent,
                       textColor: Colors.white,
@@ -60,7 +60,7 @@ class WelcomeBack extends StatelessWidget {
                   ),
                   Expanded(
                     child: WelcomeButton(
-                      buttonText: 'Sign up',
+                      buttonText: 'Jisajili',
                       onTap: const SignupPage(),
                       color: Colors.white,
                       textColor: lightColorScheme.primary,

@@ -3,7 +3,6 @@ import 'package:kiganjani_afya_check/theme/app_theme.dart';
 import 'package:kiganjani_afya_check/views/drawer/home_screen.dart';
 import 'package:kiganjani_afya_check/views/homelist.dart';
 import 'package:kiganjani_afya_check/views/pages/age.dart';
-import 'package:kiganjani_afya_check/views/pages/agesex.dart';
 import 'package:kiganjani_afya_check/views/pages/sex.dart'; // Import the AgeSexPage
 
 class Home extends StatefulWidget {
@@ -49,10 +48,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         );
         break;
       case 1:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => AgeGroupPage()),
-        );
         break;
       case 2:
       // Handle navigation for third item
@@ -196,35 +191,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       },
                     ),
                   ),
-                  // Centered Card acting as a button
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 40.0), // Add padding to position the card
-                    child: Card(
-                      elevation: 4,
-                      color: Colors.blueAccent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => AgeGroupPage()),
-                          );
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                          child: const Text(
-                            'Anza Sasa',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+
                 ],
               ),
             );
@@ -239,23 +206,23 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: 'Nyumbani',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.assessment),
-            label: 'help',
+            label: 'Msaada',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Profile',
+            label: 'Wasifu',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: 'Settings',
+            label: 'Mipangilio',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.info),
-            label: 'About',
+            label: 'Kuhusu',
           ),
         ],
         onTap: _onItemTapped,

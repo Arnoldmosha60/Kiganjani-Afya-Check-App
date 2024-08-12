@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:kiganjani_afya_check/main.dart';
 import 'package:kiganjani_afya_check/views/auth/signin.dart';
 import 'package:kiganjani_afya_check/views/pages/HomePage.dart';
+import 'package:kiganjani_afya_check/views/pages/startup.dart';
 import '../../theme/theme.dart';
 import '../../widget/custom_scaffold.dart';
 import '../../widget/logo.dart';
@@ -48,7 +50,7 @@ class _SignupPageState extends State<SignupPage> {
                     children: [
                       // get started text
                       Text(
-                        'Get Started',
+                        'Anza Sasa',
                         style: TextStyle(
                           fontSize: 30.0,
                           fontWeight: FontWeight.w900,
@@ -62,13 +64,13 @@ class _SignupPageState extends State<SignupPage> {
                       TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter Full name';
+                            return 'Tafadhali ingiza Jina Kamili';
                           }
                           return null;
                         },
                         decoration: InputDecoration(
-                          label: const Text('Full Name'),
-                          hintText: 'Enter Full Name',
+                          label: const Text('Jina Kamili'),
+                          hintText: 'Ingiza Jina Kamili',
                           hintStyle: const TextStyle(
                             color: Colors.black26,
                           ),
@@ -93,13 +95,13 @@ class _SignupPageState extends State<SignupPage> {
                       TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter Email';
+                            return 'Tafadhali ingiza Barua Pepe';
                           }
                           return null;
                         },
                         decoration: InputDecoration(
-                          label: const Text('Email'),
-                          hintText: 'Enter Email',
+                          label: const Text('Barua pepe'),
+                          hintText: 'Ingiza Barua Pepe',
                           hintStyle: const TextStyle(
                             color: Colors.black26,
                           ),
@@ -126,13 +128,13 @@ class _SignupPageState extends State<SignupPage> {
                         obscuringCharacter: '*',
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter Password';
+                            return 'Tafadhali ingiza nenosiri';
                           }
                           return null;
                         },
                         decoration: InputDecoration(
-                          label: const Text('Password'),
-                          hintText: 'Enter Password',
+                          label: const Text('Nenosiri'),
+                          hintText: 'Ingiza Barua Pepe',
                           hintStyle: const TextStyle(
                             color: Colors.black26,
                           ),
@@ -166,13 +168,13 @@ class _SignupPageState extends State<SignupPage> {
                             activeColor: lightColorScheme.primary,
                           ),
                           const Text(
-                            'I agree to the processing of ',
+                            'Ninakubali usindikaji wa',
                             style: TextStyle(
                               color: Colors.black45,
                             ),
                           ),
                           Text(
-                            'Personal data',
+                            'Taarifa za Kibinafsi',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: lightColorScheme.primary,
@@ -194,18 +196,18 @@ class _SignupPageState extends State<SignupPage> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const Home(),
+                                  builder: (context) => StartPage(),
                                 ),
                               );
                             } else if (!agreePersonalData) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                     content: Text(
-                                        'Please agree to the processing of personal data')),
+                                        'Tafadhali kubali usindikaji wa taarifa za kibinafsi')),
                               );
                             }
                           },
-                          child: const Text('Sign up'),
+                          child: const Text('Jisajili'),
                         ),
                       ),
                       const SizedBox(
@@ -227,7 +229,7 @@ class _SignupPageState extends State<SignupPage> {
                               horizontal: 10,
                             ),
                             child: Text(
-                              'Sign up with',
+                              'Jisajili kwa',
                               style: TextStyle(
                                 color: Colors.black45,
                               ),
@@ -260,7 +262,7 @@ class _SignupPageState extends State<SignupPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
-                            'Already have an account? ',
+                            'Tayari una akaunti? ',
                             style: TextStyle(
                               color: Colors.black45,
                             ),
@@ -275,7 +277,7 @@ class _SignupPageState extends State<SignupPage> {
                               );
                             },
                             child: Text(
-                              'Sign in',
+                              'Ingia',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: lightColorScheme.primary,

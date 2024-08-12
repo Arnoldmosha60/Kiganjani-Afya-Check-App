@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kiganjani_afya_check/views/auth/signup.dart';
+import 'package:kiganjani_afya_check/views/pages/HomePage.dart';
 
 import '../../theme/theme.dart';
 import '../../widget/custom_scaffold.dart';
@@ -134,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                                 activeColor: lightColorScheme.primary,
                               ),
                               const Text(
-                                'Remember me',
+                                'Nikumbuke',
                                 style: TextStyle(
                                   color: Colors.black45,
                                 ),
@@ -143,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           GestureDetector(
                             child: Text(
-                              'Forget password?',
+                              'Sahau nenosiri?',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: lightColorScheme.primary,
@@ -161,20 +162,21 @@ class _LoginPageState extends State<LoginPage> {
                           onPressed: () {
                             if (_formSignInKey.currentState!.validate() &&
                                 rememberPassword) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Processing Data'),
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const Home(),
                                 ),
                               );
                             } else if (!rememberPassword) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                     content: Text(
-                                        'Please agree to the processing of personal data')),
+                                        'Tafadhali kubali usindikaji wa taarifa za kibinafsi')),
                               );
                             }
                           },
-                          child: const Text('Sign In'),
+                          child: const Text('Ingia'),
                         ),
                       ),
                       const SizedBox(
@@ -195,7 +197,7 @@ class _LoginPageState extends State<LoginPage> {
                               horizontal: 10,
                             ),
                             child: Text(
-                              'Sign in with',
+                              'Ingia kwa',
                               style: TextStyle(
                                 color: Colors.black45,
                               ),
@@ -228,7 +230,7 @@ class _LoginPageState extends State<LoginPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
-                            'Don\'t have an account? ',
+                            'Huna akaunti? ',
                             style: TextStyle(
                               color: Colors.black45,
                             ),
@@ -243,7 +245,7 @@ class _LoginPageState extends State<LoginPage> {
                               );
                             },
                             child: Text(
-                              'Sign up',
+                              'Jisajili',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: lightColorScheme.primary,
