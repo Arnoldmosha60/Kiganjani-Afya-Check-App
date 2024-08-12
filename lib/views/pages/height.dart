@@ -39,7 +39,9 @@ class _HeightEntryPageState extends State<HeightEntryPage> {
               ),
               const SizedBox(height: 20),
               const Text(
+
                 'UREFU',
+                semanticsLabel: 'UREFU / UZITO',
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
