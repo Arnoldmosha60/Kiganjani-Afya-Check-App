@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kiganjani_afya_check/views/pages/HomePage.dart';
 
 class ActivityLevelSelectionPage extends StatelessWidget {
   @override
@@ -7,7 +8,7 @@ class ActivityLevelSelectionPage extends StatelessWidget {
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.pop(context); // Handle back navigation
           },
@@ -21,8 +22,8 @@ class ActivityLevelSelectionPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20),
-            Center(
+            const SizedBox(height: 20),
+            const Center(
               child: Text(
                 'Select Your Activity Level',
                 style: TextStyle(
@@ -32,7 +33,7 @@ class ActivityLevelSelectionPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Expanded(
               child: ListView(
                 children: [
@@ -83,12 +84,12 @@ class ActivityLevelSelectionPage extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => SelectedActivityPage(title: title),
+            builder: (context) => const Home(),
           ),
         );
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10),
+        margin: const EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(12),
@@ -97,7 +98,7 @@ class ActivityLevelSelectionPage extends StatelessWidget {
               color: Colors.grey.withOpacity(0.3),
               spreadRadius: 2,
               blurRadius: 5,
-              offset: Offset(0, 3),
+              offset: const Offset(0, 3),
             ),
           ],
         ),
@@ -119,13 +120,13 @@ class ActivityLevelSelectionPage extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Text(
                       description,
                       style: TextStyle(
@@ -153,7 +154,7 @@ class SelectedActivityPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Selected Activity Level'),
+        title: const Text('Selected Activity Level'),
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
@@ -161,16 +162,10 @@ class SelectedActivityPage extends StatelessWidget {
       body: Center(
         child: Text(
           'You selected: $title',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
     );
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: ActivityLevelSelectionPage(),
-    debugShowCheckedModeBanner: false,
-  ));
-}
