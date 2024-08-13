@@ -136,28 +136,69 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             return const SizedBox();
           } else {
             return Padding(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+              padding: const EdgeInsets.only(top: 10.0, bottom: 2.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center, // Center the content
                 children: <Widget>[
-                  appBar(),
                   Card(
                     clipBehavior: Clip.antiAlias,
                     child: Column(
                       children: [
                         ListTile(
-                          leading: Icon(Icons.arrow_drop_down_circle),
-                          title: const Text('Card title 1'),
+                          leading: const Icon(Icons.arrow_drop_down_circle),
+                          title: const Text('Body Mass Index (BMI)'),
                           subtitle: Text(
-                            'Secondary Text',
+                            'The ratio of persons height and weight: ',
                             style: TextStyle(color: Colors.black.withOpacity(0.6)),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Text(
-                            'Greyhound divisively hello coldly wonderfully marginally far upon excluding.',
+                            'BMI VALUE',
+                            style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                          ),
+                        ),
+                        OverflowBar(
+                          alignment: MainAxisAlignment.start,
+                          children: [
+                            ElevatedButton(
+                              // textColor: const Color(0xFF6200EE),
+                              onPressed: () {
+                                // Perform some action
+                              },
+                              child: const Text('VIEW'),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                // Perform some action
+                              },
+                              child: const Text('UPDATE'),
+                            ),
+                          ],
+                        ),
+                        // Image.asset('assets/images/background.png')
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 2.0,
+                  ),
+                  Card(
+                    clipBehavior: Clip.antiAlias,
+                    child: Column(
+                      children: [
+                        ListTile(
+                          leading: const Icon(Icons.arrow_drop_down_circle),
+                          title: const Text('Buzzle Metabolism Rate (BMR)'),
+                          subtitle: Text(
+                            'Kiwango ambacho mwili unaweza kuchoma calories',
+                            style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(
+                            'BMR Value',
                             style: TextStyle(color: Colors.black.withOpacity(0.6)),
                           ),
                         ),
@@ -169,19 +210,22 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                               onPressed: () {
                                 // Perform some action
                               },
-                              child: const Text('ACTION 1'),
+                              child: const Text('VIEW'),
                             ),
                             ElevatedButton(
                               onPressed: () {
                                 // Perform some action
                               },
-                              child: const Text('ACTION 2'),
+                              child: const Text('UPDATE'),
                             ),
                           ],
                         ),
                         // Image.asset('assets/images/background.png')
                       ],
                     ),
+                  ),
+                  const SizedBox(
+                    height: 2.0,
                   ),
                 ],
               ),
