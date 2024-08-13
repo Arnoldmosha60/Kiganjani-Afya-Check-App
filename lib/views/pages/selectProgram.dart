@@ -24,7 +24,7 @@ class Selectprogram extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Chagua Chaguo Lako',
           style: TextStyle(
             fontWeight: FontWeight.bold,
