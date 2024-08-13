@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:kiganjani_afya_check/main.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class Selectprogram extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -13,18 +14,19 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: 'Roboto',
       ),
-      home: Selectprogram(),
+      home: SelectProgram(),
+      debugShowCheckedModeBanner: false, // Remove the debug banner
     );
   }
 }
 
-class Selectprogram extends StatelessWidget {
+class SelectProgram extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Chagua Chaguo Lako',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -40,28 +42,35 @@ class Selectprogram extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            OptionCard(
-              title: 'Punguza Uzito Kimuujiza',
-              description:
-                  'Fikia malengo yako ya uzito kwa haraka na kwa ufanisi kupitia njia za kibunifu.',
-              icon: Icons.flash_on,
-              color: Colors.green.shade700,
-              onTap: () {
-                // Navigate to the first option page
-                // Navigator.push(context, MaterialPageRoute(builder: (context) => PunguzaUzitoPage()));
-              },
+            // Added margin to lift the card slightly
+            Transform.translate(
+              offset: Offset(0, -220), // Adjust the vertical offset as needed
+              child: OptionCard(
+                title: 'Punguza Uzito Kimuujiza',
+                description:
+                    'Fikia malengo yako ya uzito kwa haraka na kwa ufanisi kupitia njia za kibunifu.',
+                icon: Icons.flash_on,
+                color: Colors.green.shade700,
+                onTap: () {
+                  // Navigate to the first option page
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) => PunguzaUzitoPage()));
+                },
+              ),
             ),
-            SizedBox(height: 20),
-            OptionCard(
-              title: 'Tuzo la Mpunguza Uzito Bora Tanzania',
-              description:
-                  'Shiriki na ushinde tuzo kama mpunguza uzito bora nchini Tanzania.',
-              icon: Icons.star,
-              color: Colors.orange.shade700,
-              onTap: () {
-                // Navigate to the second option page
-                // Navigator.push(context, MaterialPageRoute(builder: (context) => TuzoPage()));
-              },
+            const SizedBox(height: 20),
+            Transform.translate(
+              offset: Offset(0, -220), // Adjust the vertical offset as needed
+              child: OptionCard(
+                title: 'Tuzo la Mpunguza Uzito Bora Tanzania',
+                description:
+                    'Shiriki na ushinde tuzo kama mpunguza uzito bora nchini Tanzania.',
+                icon: Icons.star,
+                color: Colors.orange.shade700,
+                onTap: () {
+                  // Navigate to the second option page
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) => TuzoPage()));
+                },
+              ),
             ),
           ],
         ),
@@ -87,21 +96,22 @@ class OptionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
+      borderRadius: BorderRadius.circular(15),
       child: Container(
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(15),
           boxShadow: const [
             BoxShadow(
-              color: Colors.black26,
-              blurRadius: 10,
-              offset: Offset(0, 5),
+              color: Colors.green, // Updated shadow color to black for better contrast
+              blurRadius: 15,
+              offset: Offset(0, 10),
             ),
           ],
         ),
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Row(
           children: [
             Icon(
@@ -109,7 +119,7 @@ class OptionCard extends StatelessWidget {
               size: 40,
               color: Colors.white,
             ),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,7 +132,7 @@ class OptionCard extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
                     description,
                     style: const TextStyle(
