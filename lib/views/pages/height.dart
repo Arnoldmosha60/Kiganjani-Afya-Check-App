@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kiganjani_afya_check/views/pages/HomePage.dart';
+import 'package:kiganjani_afya_check/views/pages/bodysize.dart';
 
 class HeightEntryPage extends StatefulWidget {
   @override
@@ -189,7 +190,7 @@ class _HeightEntryPageState extends State<HeightEntryPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const Home()),
+                          builder: (context) => BodyTypeSelectionPage()),
                     );
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(

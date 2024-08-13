@@ -97,7 +97,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             ),
             ListTile(
               leading: const Icon(Icons.home),
-              title: const Text('Home'),
+              title: const Text('Nyumbani'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -107,21 +107,21 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             ),
             ListTile(
               leading: const Icon(Icons.person),
-              title: const Text('Profile'),
+              title: const Text('Wasifu'),
               onTap: () {
                 // Add navigation to profile screen
               },
             ),
             ListTile(
               leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
+              title: const Text('Muongozo'),
               onTap: () {
                 // Add navigation to settings screen
               },
             ),
             ListTile(
               leading: const Icon(Icons.info),
-              title: const Text('About'),
+              title: const Text('Kuhusu'),
               onTap: () {
                 // Add navigation to about screen
               },
@@ -197,35 +197,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             );
           }
         },
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed, // Ensures all items are displayed with fixed width
-        backgroundColor: Colors.blueAccent, // Sets the background color of the navigation bar
-        selectedItemColor: Colors.white, // Sets the color of the selected item
-        unselectedItemColor: Colors.white70, // Sets the color of the unselected items
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Nyumbani',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.assessment),
-            label: 'Msaada',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Wasifu',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Mipangilio',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.info),
-            label: 'Kuhusu',
-          ),
-        ],
-        onTap: _onItemTapped,
       ),
     );
   }

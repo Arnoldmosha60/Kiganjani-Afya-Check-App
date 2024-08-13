@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kiganjani_afya_check/views/auth/slidingLogoin.dart';
 import 'package:kiganjani_afya_check/views/pages/age.dart';
+import 'package:kiganjani_afya_check/views/pages/bodysize.dart';
 import 'package:kiganjani_afya_check/views/pages/height.dart';
 import 'package:kiganjani_afya_check/views/pages/sex.dart';
 import 'package:kiganjani_afya_check/views/pages/startup.dart';
