@@ -142,56 +142,47 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 crossAxisAlignment: CrossAxisAlignment.center, // Center the content
                 children: <Widget>[
                   appBar(),
-                  Expanded(
-                    child: FutureBuilder<bool>(
-                      future: getData(),
-                      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-                        if (!snapshot.hasData) {
-                          return const SizedBox();
-                        } else {
-                          return GridView(
-                            padding: const EdgeInsets.only(top: 0, left: 12, right: 12),
-                            physics: const BouncingScrollPhysics(),
-                            scrollDirection: Axis.vertical,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: multiple ? 2 : 1,
-                              mainAxisSpacing: 12.0,
-                              crossAxisSpacing: 12.0,
-                              childAspectRatio: 1.5,
-                            ),
-                            children: List<Widget>.generate(
-                              homeList.length,
-                                  (int index) {
-                                final int count = homeList.length;
-                                final Animation<double> animation =
-                                Tween<double>(begin: 0.0, end: 1.0).animate(
-                                  CurvedAnimation(
-                                    parent: animationController!,
-                                    curve: Interval((1 / count) * index, 1.0, curve: Curves.fastOutSlowIn),
-                                  ),
-                                );
-                                animationController?.forward();
-                                return HomeListView(
-                                  animation: animation,
-                                  animationController: animationController,
-                                  listData: homeList[index],
-                                  callBack: () {
-                                    Navigator.push<dynamic>(
-                                      context,
-                                      MaterialPageRoute<dynamic>(
-                                        builder: (BuildContext context) => homeList[index].navigateScreen!,
-                                      ),
-                                    );
-                                  },
-                                );
+                  Card(
+                    clipBehavior: Clip.antiAlias,
+                    child: Column(
+                      children: [
+                        ListTile(
+                          leading: Icon(Icons.arrow_drop_down_circle),
+                          title: const Text('Card title 1'),
+                          subtitle: Text(
+                            'Secondary Text',
+                            style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(
+                            'Greyhound divisively hello coldly wonderfully marginally far upon excluding.',
+                            style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                          ),
+                        ),
+                        ButtonBar(
+                          alignment: MainAxisAlignment.start,
+                          children: [
+                            ElevatedButton(
+                              // textColor: const Color(0xFF6200EE),
+                              onPressed: () {
+                                // Perform some action
                               },
+                              child: const Text('ACTION 1'),
                             ),
-                          );
-                        }
-                      },
+                            ElevatedButton(
+                              onPressed: () {
+                                // Perform some action
+                              },
+                              child: const Text('ACTION 2'),
+                            ),
+                          ],
+                        ),
+                        // Image.asset('assets/images/background.png')
+                      ],
                     ),
                   ),
-
                 ],
               ),
             );
