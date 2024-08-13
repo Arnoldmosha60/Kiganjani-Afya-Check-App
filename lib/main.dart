@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:kiganjani_afya_check/views/auth/slidingLogoin.dart';
 import 'package:kiganjani_afya_check/views/pages/age.dart';
+import 'package:kiganjani_afya_check/views/pages/bodysize.dart';
 import 'package:kiganjani_afya_check/views/pages/height.dart';
+import 'package:kiganjani_afya_check/views/pages/selectProgram.dart';
 import 'package:kiganjani_afya_check/views/pages/sex.dart';
 import 'package:kiganjani_afya_check/views/pages/startup.dart';
 import 'package:kiganjani_afya_check/views/splash_screen.dart';
@@ -23,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SplashScreen(),
+      home: Selectprogram(),
     );
   }
 }
