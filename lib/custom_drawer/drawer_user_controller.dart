@@ -42,13 +42,13 @@ class _DrawerUserControllerState extends State<DrawerUserController>
     iconAnimationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 0));
     iconAnimationController
-      ?..animateTo(1.0,
+      ?.animateTo(1.0,
           duration: const Duration(milliseconds: 0),
           curve: Curves.fastOutSlowIn);
     scrollController =
         ScrollController(initialScrollOffset: widget.drawerWidth);
     scrollController!
-      ..addListener(() {
+      .addListener(() {
         if (scrollController!.offset <= 0) {
           if (scrolloffset != 1.0) {
             setState(() {

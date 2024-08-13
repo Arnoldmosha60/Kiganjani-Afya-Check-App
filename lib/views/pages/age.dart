@@ -7,7 +7,7 @@ class AgeEntryPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        titleTextStyle: TextStyle(
+        titleTextStyle: const TextStyle(
           color: Colors.black,
           fontSize: 20, // Adjust font size for the app bar title
         ),
@@ -20,8 +20,8 @@ class AgeEntryPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 20),
-              Text(
+              const SizedBox(height: 20),
+              const Text(
                 'UMRI',
                 style: TextStyle(
                   fontSize: 32, // Larger font size for the main heading
@@ -30,8 +30,8 @@ class AgeEntryPage extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 10),
-              Text(
+              const SizedBox(height: 10),
+              const Text(
                 'Ingiza umri wako',
                 style: TextStyle(
                   fontSize: 18, // Smaller font size for the subheading
@@ -39,11 +39,12 @@ class AgeEntryPage extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               SizedBox(
-                width: double.infinity, // Make the card fill the width of its parent
+                width: double
+                    .infinity, // Make the card fill the width of its parent
                 child: ConstrainedBox(
-                  constraints: BoxConstraints(
+                  constraints: const BoxConstraints(
                     maxWidth: 400, // Set a maximum width for the card
                   ),
                   child: Card(
@@ -61,22 +62,30 @@ class AgeEntryPage extends StatelessWidget {
                             size: 80, // Reduced icon size
                             color: Colors.blue.shade700,
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           AgeInputField(),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           ElevatedButton(
                             onPressed: () {
-                         Navigator.push(
-                         context,
-                    MaterialPageRoute(builder: (context) => HeightEntryPage()),
-                  );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HeightEntryPage()),
+                              );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue.shade700,
-                              padding: EdgeInsets.symmetric(vertical: 16),
-                              textStyle: TextStyle(fontSize: 18),
+                              padding:
+                              const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+                              textStyle: const TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12), // Rounded edges
+                              ),
+                              shadowColor: Colors.black,
+                              elevation: 5,
                             ),
-                            child: Text('Endelea'),
+                            child: const Text('Endelea'),
                           ),
                         ],
                       ),
@@ -113,14 +122,15 @@ class _AgeInputFieldState extends State<AgeInputField> {
       controller: _controller,
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
-        border: OutlineInputBorder(),
+        border: const OutlineInputBorder(),
         labelText: 'Umri',
         hintText: 'Ingiza umri wako',
         errorText: _errorText,
       ),
       onChanged: (value) {
         setState(() {
-          _errorText = (_validateAge(value) ? null : 'Tafadhali ingiza umri sahihi')!;
+          _errorText =
+              (_validateAge(value) ? null : 'Tafadhali ingiza umri sahihi')!;
         });
       },
     );
