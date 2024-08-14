@@ -197,7 +197,7 @@ class _SignupPageState extends State<SignupPage> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => AgeEntryPage(),
+                                  builder: (context) => StartPage(),
                                 ),
                               );
                             } else if (!agreePersonalData) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kiganjani_afya_check/views/auth/slidingLogoin.dart';
+import 'package:kiganjani_afya_check/views/auth/welcome_back.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     Future.delayed(const Duration(seconds: 8), () {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => LogInSignUp()));
+          MaterialPageRoute(builder: (_) => const WelcomeBack()));
     });
   }
 

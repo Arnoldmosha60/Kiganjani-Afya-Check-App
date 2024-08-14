@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kiganjani_afya_check/main.dart';
+import 'package:kiganjani_afya_check/views/pages/sex.dart';
 
 void main() {
   runApp(MyApp());
@@ -53,7 +54,10 @@ class SelectProgram extends StatelessWidget {
                 color: Colors.green.shade700,
                 onTap: () {
                   // Navigate to the first option page
-                  // Navigator.push(context, MaterialPageRoute(builder: (context) => PunguzaUzitoPage()));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AgeGroupPage()),
+                  );
                 },
               ),
             ),
@@ -68,7 +72,10 @@ class SelectProgram extends StatelessWidget {
                 color: Colors.orange.shade700,
                 onTap: () {
                   // Navigate to the second option page
-                  // Navigator.push(context, MaterialPageRoute(builder: (context) => TuzoPage()));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => TuzoPage()),
+                  );
                 },
               ),
             ),
@@ -145,6 +152,36 @@ class OptionCard extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+// Placeholder page for Punguza Uzito Kimuujiza
+class PunguzaUzitoPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Punguza Uzito Kimuujiza'),
+      ),
+      body: Center(
+        child: Text('Welcome to Punguza Uzito Kimuujiza!'),
+      ),
+    );
+  }
+}
+
+// Placeholder page for Tuzo la Mpunguza Uzito Bora Tanzania
+class TuzoPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Tuzo la Mpunguza Uzito Bora Tanzania'),
+      ),
+      body: Center(
+        child: Text('Welcome to Tuzo la Mpunguza Uzito Bora Tanzania!'),
       ),
     );
   }

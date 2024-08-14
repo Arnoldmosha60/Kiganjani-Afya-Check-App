@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kiganjani_afya_check/views/pages/TargetedWeight.dart';
 
 class ActivityLevelSelectionPage extends StatelessWidget {
   @override
@@ -83,7 +84,7 @@ class ActivityLevelSelectionPage extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => SelectedActivityPage(title: title),
+            builder: (context) => Targetedweight(),
           ),
         );
       },
@@ -142,35 +143,4 @@ class ActivityLevelSelectionPage extends StatelessWidget {
       ),
     );
   }
-}
-
-class SelectedActivityPage extends StatelessWidget {
-  final String title;
-
-  SelectedActivityPage({required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Selected Activity Level'),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text(
-          'You selected: $title',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      ),
-    );
-  }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: ActivityLevelSelectionPage(),
-    debugShowCheckedModeBanner: false,
-  ));
 }

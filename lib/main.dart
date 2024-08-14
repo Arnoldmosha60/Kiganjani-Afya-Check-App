@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kiganjani_afya_check/views/auth/slidingLogoin.dart';
+import 'package:kiganjani_afya_check/views/pages/HomePage.dart';
+import 'package:kiganjani_afya_check/views/pages/TargetedWeight.dart';
 import 'package:kiganjani_afya_check/views/pages/age.dart';
 import 'package:kiganjani_afya_check/views/pages/bodysize.dart';
 import 'package:kiganjani_afya_check/views/pages/height.dart';
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SplashScreen(),
+      home: Homepage(),
     );
   }
 }

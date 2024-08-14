@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kiganjani_afya_check/views/pages/selectProgram.dart';
 import 'package:kiganjani_afya_check/views/pages/sex.dart';
 
 class StartPage extends StatefulWidget {
@@ -99,7 +100,7 @@ class _StartPageState extends State<StartPage> {
                         ? () {
                                 Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AgeGroupPage()),
+                MaterialPageRoute(builder: (context) => SelectProgram()),
               );
                             // Handle start button press
                           }
