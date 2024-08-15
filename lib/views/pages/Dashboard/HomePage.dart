@@ -8,7 +8,7 @@ import 'package:kiganjani_afya_check/views/pages/Dashboard/introduction.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/workout.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class Homepage extends StatelessWidget {
@@ -55,11 +55,11 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'Kiganjani Afya Check',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22, color: Colors.white),
         ),
         centerTitle: true,
         backgroundColor: Colors.blueAccent,
-        elevation: 0,
+        elevation: 5,
       ),
       drawer: AppDrawer(), // Custom Drawer
       body: Padding(
@@ -85,12 +85,12 @@ class HomePage extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     const Text(
                       'Tuanzishe mabadiliko yako leo!',
                       style: TextStyle(fontSize: 16),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
                         // Navigate to the next page or functionality
@@ -112,7 +112,7 @@ class HomePage extends StatelessWidget {
                       ),
                       child: const Text(
                         'Utangulizi',
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ),
                   ],
@@ -165,7 +165,7 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
-            Spacer(), // Pushes the buttons to the bottom
+            const Spacer(), // Pushes the buttons to the bottom
             // Impressive Animated Buttons at the Bottom
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -181,13 +181,14 @@ class HomePage extends StatelessWidget {
                         vertical: 15,
                       ),
                       backgroundColor: Colors.redAccent,
+                      elevation: 5,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
                     ),
                     child: const Text(
                       'Huduma',
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                   ),
                 ),
@@ -201,6 +202,7 @@ class HomePage extends StatelessWidget {
                         horizontal: 30,
                         vertical: 15,
                       ),
+                      elevation: 5,
                       backgroundColor: Colors.blueAccent,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
@@ -208,7 +210,7 @@ class HomePage extends StatelessWidget {
                     ),
                     child: const Text(
                       'Endelea na Mpango',
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                   ),
                 ),
@@ -300,8 +302,8 @@ class AppDrawer extends StatelessWidget {
               padding: EdgeInsets.zero,
               children: [
                 ListTile(
-                  leading: Icon(Icons.home),
-                  title: Text('Nyumbani'),
+                  leading: const Icon(Icons.home),
+                  title: const Text('Nyumbani'),
                   onTap: () {
                     // Navigate to Home
                     Navigator.push(
@@ -311,15 +313,15 @@ class AppDrawer extends StatelessWidget {
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('Wasifu'),
+                  leading: const Icon(Icons.person),
+                  title: const Text('Wasifu'),
                   onTap: () {
                     // Navigate to Profile
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.settings),
-                  title: Text('Mipangilio'),
+                  leading: const Icon(Icons.settings),
+                  title: const Text('Mipangilio'),
                   onTap: () {
                     // Navigate to Settings
                   },
@@ -327,17 +329,17 @@ class AppDrawer extends StatelessWidget {
               ],
             ),
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            leading: Icon(Icons.help),
-            title: Text('Huduma & Maoni'),
+            leading: const Icon(Icons.help),
+            title: const Text('Huduma & Maoni'),
             onTap: () {
               // Navigate to Help & Feedback
             },
           ),
           ListTile(
-            leading: Icon(Icons.logout),
-            title: Text('Toka'),
+            leading: const Icon(Icons.logout),
+            title: const Text('Toka'),
             onTap: () {
               // Handle Logout
               Navigator.push(
@@ -357,9 +359,9 @@ class SecondPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Second Page'),
+        title: const Text('Second Page'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Welcome to the second page!'),
       ),
     );
@@ -371,9 +373,9 @@ class StatsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stats Page'),
+        title: const Text('Stats Page'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Welcome to the stats page!'),
       ),
     );
