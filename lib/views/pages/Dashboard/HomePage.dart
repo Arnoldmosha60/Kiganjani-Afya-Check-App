@@ -1,53 +1,55 @@
-import 'package:flutter/material.dart';
-import 'package:animate_do/animate_do.dart';
-import 'package:kiganjani_afya_check/main.dart';
-import 'package:kiganjani_afya_check/views/auth/welcome_back.dart';
-import 'package:kiganjani_afya_check/views/pages/Dashboard/Nutrition.dart';
-import 'package:kiganjani_afya_check/views/pages/Dashboard/Progress.dart';
-import 'package:kiganjani_afya_check/views/pages/Dashboard/introduction.dart';
-import 'package:kiganjani_afya_check/views/pages/Dashboard/workout.dart';
+  import 'package:flutter/material.dart';
+  import 'package:animate_do/animate_do.dart';
+  import 'package:kiganjani_afya_check/main.dart';
+  import 'package:kiganjani_afya_check/views/auth/welcome_back.dart';
+  import 'package:kiganjani_afya_check/views/pages/Dashboard/Nutrition.dart';
+  import 'package:kiganjani_afya_check/views/pages/Dashboard/Progress.dart';
+  import 'package:kiganjani_afya_check/views/pages/Dashboard/introduction.dart';
+  import 'package:kiganjani_afya_check/views/pages/Dashboard/program.dart';
+  import 'package:kiganjani_afya_check/views/pages/Dashboard/workout.dart';
+  import 'package:kiganjani_afya_check/views/pages/selectProgram.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class Homepage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'home',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: 'Roboto',
-      ),
-      home: HomePage(),
-      debugShowCheckedModeBanner: false,
-    );
+  class Homepage extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+      return MaterialApp(
+        title: 'home',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          fontFamily: 'Roboto',
+        ),
+        home: HomePage(),
+        debugShowCheckedModeBanner: false,
+      );
+    }
   }
-}
 
-class HomePage extends StatelessWidget {
-  void _navigateToPage(BuildContext context, Widget page) {
-    Navigator.push(
-      context,
-      PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => page,
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          const begin = Offset(0.0, 1.0);
-          const end = Offset.zero;
-          const curve = Curves.ease;
+  class HomePage extends StatelessWidget {
+    void _navigateToPage(BuildContext context, Widget page) {
+      Navigator.push(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) => page,
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            const begin = Offset(0.0, 1.0);
+            const end = Offset.zero;
+            const curve = Curves.ease;
 
-          var tween =
-              Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+            var tween =
+                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 
-          return SlideTransition(
-            position: animation.drive(tween),
-            child: child,
-          );
-        },
-      ),
-    );
-  }
+            return SlideTransition(
+              position: animation.drive(tween),
+              child: child,
+            );
+          },
+        ),
+      );
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +57,11 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'Kiganjani Afya Check',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22, color: Colors.white),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
         ),
         centerTitle: true,
         backgroundColor: Colors.blueAccent,
-        elevation: 5,
+        elevation: 0,
       ),
       drawer: AppDrawer(), // Custom Drawer
       body: Padding(
@@ -85,12 +87,12 @@ class HomePage extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: 10),
                     const Text(
                       'Tuanzishe mabadiliko yako leo!',
                       style: TextStyle(fontSize: 16),
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
                         // Navigate to the next page or functionality
@@ -112,7 +114,7 @@ class HomePage extends StatelessWidget {
                       ),
                       child: const Text(
                         'Utangulizi',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        style: TextStyle(fontSize: 18),
                       ),
                     ),
                   ],
@@ -165,7 +167,7 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
-            const Spacer(), // Pushes the buttons to the bottom
+            Spacer(), // Pushes the buttons to the bottom
             // Impressive Animated Buttons at the Bottom
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -181,14 +183,13 @@ class HomePage extends StatelessWidget {
                         vertical: 15,
                       ),
                       backgroundColor: Colors.redAccent,
-                      elevation: 5,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
                     ),
                     child: const Text(
                       'Huduma',
-                      style: TextStyle(fontSize: 16, color: Colors.white),
+                      style: TextStyle(fontSize: 16),
                     ),
                   ),
                 ),
@@ -202,7 +203,6 @@ class HomePage extends StatelessWidget {
                         horizontal: 30,
                         vertical: 15,
                       ),
-                      elevation: 5,
                       backgroundColor: Colors.blueAccent,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
@@ -210,7 +210,7 @@ class HomePage extends StatelessWidget {
                     ),
                     child: const Text(
                       'Endelea na Mpango',
-                      style: TextStyle(fontSize: 16, color: Colors.white),
+                      style: TextStyle(fontSize: 16),
                     ),
                   ),
                 ),
@@ -224,52 +224,52 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class FeatureCard extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final Color color;
-  final VoidCallback onTap;
+  class FeatureCard extends StatelessWidget {
+    final IconData icon;
+    final String title;
+    final Color color;
+    final VoidCallback onTap;
 
-  FeatureCard({
-    required this.icon,
-    required this.title,
-    required this.color,
-    required this.onTap,
-  });
+    FeatureCard({
+      required this.icon,
+      required this.title,
+      required this.color,
+      required this.onTap,
+    });
 
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(15),
-      child: Container(
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(15),
-        ),
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            Icon(
-              icon,
-              size: 40,
-              color: Colors.white,
-            ),
-            const SizedBox(height: 10),
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+    @override
+    Widget build(BuildContext context) {
+      return InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(15),
+        child: Container(
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(15),
+          ),
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              Icon(
+                icon,
+                size: 40,
                 color: Colors.white,
               ),
-            ),
-          ],
+              const SizedBox(height: 10),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
-}
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -302,8 +302,8 @@ class AppDrawer extends StatelessWidget {
               padding: EdgeInsets.zero,
               children: [
                 ListTile(
-                  leading: const Icon(Icons.home),
-                  title: const Text('Nyumbani'),
+                  leading: Icon(Icons.home),
+                  title: Text('Nyumbani'),
                   onTap: () {
                     // Navigate to Home
                     Navigator.push(
@@ -313,15 +313,15 @@ class AppDrawer extends StatelessWidget {
                   },
                 ),
                 ListTile(
-                  leading: const Icon(Icons.person),
-                  title: const Text('Wasifu'),
+                  leading: Icon(Icons.person),
+                  title: Text('Wasifu'),
                   onTap: () {
                     // Navigate to Profile
                   },
                 ),
                 ListTile(
-                  leading: const Icon(Icons.settings),
-                  title: const Text('Mipangilio'),
+                  leading: Icon(Icons.settings),
+                  title: Text('Mipangilio'),
                   onTap: () {
                     // Navigate to Settings
                   },
@@ -329,17 +329,17 @@ class AppDrawer extends StatelessWidget {
               ],
             ),
           ),
-          const Divider(),
+          Divider(),
           ListTile(
-            leading: const Icon(Icons.help),
-            title: const Text('Huduma & Maoni'),
+            leading: Icon(Icons.help),
+            title: Text('Huduma & Maoni'),
             onTap: () {
               // Navigate to Help & Feedback
             },
           ),
           ListTile(
-            leading: const Icon(Icons.logout),
-            title: const Text('Toka'),
+            leading: Icon(Icons.logout),
+            title: Text('Toka'),
             onTap: () {
               // Handle Logout
               Navigator.push(
@@ -359,9 +359,9 @@ class SecondPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Second Page'),
+        title: Text('Second Page'),
       ),
-      body: const Center(
+      body: Center(
         child: Text('Welcome to the second page!'),
       ),
     );
@@ -373,9 +373,9 @@ class StatsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Stats Page'),
+        title: Text('Stats Page'),
       ),
-      body: const Center(
+      body: Center(
         child: Text('Welcome to the stats page!'),
       ),
     );

@@ -1,4 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:kiganjani_afya_check/views/pages/Dashboard/HomePage.dart';
+import 'package:kiganjani_afya_check/views/pages/Assessment/TargetedWeight.dart';
+import 'package:kiganjani_afya_check/views/pages/Assessment/age.dart';
+import 'package:kiganjani_afya_check/views/pages/Assessment/bodysize.dart';
+import 'package:kiganjani_afya_check/views/pages/Assessment/height.dart';
+import 'package:kiganjani_afya_check/views/pages/selectProgram.dart';
+import 'package:kiganjani_afya_check/views/pages/Assessment/sex.dart';
+import 'package:kiganjani_afya_check/views/pages/startup.dart';
 import 'package:kiganjani_afya_check/views/splash_screen.dart';
 // import 'custom_drawer/home_drawer.dart';
 // import 'package:kiganjani_afya_check/views/drawer/navigation_home_screen.dart';

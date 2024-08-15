@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kiganjani_afya_check/views/auth/signup.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/HomePage.dart';
+import 'package:animated_snack_bar/animated_snack_bar.dart';  // Import the package
 
 import '../../theme/theme.dart';
 import '../../widget/custom_scaffold.dart';
 import '../../widget/logo.dart';
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -160,20 +160,24 @@ class _LoginPageState extends State<LoginPage> {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            if (_formSignInKey.currentState!.validate() &&
-                                rememberPassword) {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Homepage(),
-                                ),
-                              );
-                            } else if (!rememberPassword) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text(
-                                        'Tafadhali kubali usindikaji wa taarifa za kibinafsi')),
-                              );
+                            if (_formSignInKey.currentState!.validate()) {
+                              // Show an animated success notification
+                              AnimatedSnackBar.material(
+                                'Login Success 🎉',
+                                type: AnimatedSnackBarType.success,
+                                duration: const Duration(seconds: 2),
+                                mobileSnackBarPosition: MobileSnackBarPosition.bottom,
+                              ).show(context);
+
+                              // Navigate to Homepage after a short delay
+                              Future.delayed(const Duration(seconds: 2), () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Homepage(),
+                                  ),
+                                );
+                              });
                             }
                           },
                           child: const Text('Ingia'),
