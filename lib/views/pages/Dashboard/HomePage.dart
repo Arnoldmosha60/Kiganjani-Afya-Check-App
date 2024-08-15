@@ -9,9 +9,9 @@
   import 'package:kiganjani_afya_check/views/pages/Dashboard/workout.dart';
   import 'package:kiganjani_afya_check/views/pages/selectProgram.dart';
 
-  void main() {
-    runApp(MyApp());
-  }
+void main() {
+  runApp(MyApp());
+}
 
   class Homepage extends StatelessWidget {
     @override
@@ -51,185 +51,178 @@
       );
     }
 
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Kiganjani Afya Check',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.blueAccent,
-          elevation: 0,
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Kiganjani Afya Check',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
         ),
-        drawer: AppDrawer(), // Custom Drawer
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              // Welcome Card
-              Card(
-                elevation: 10,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Text(
-                        'Karibu kwenye Safari yako ya Afya',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      const Text(
-                        'Tuanzishe mabadiliko yako leo!',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      SizedBox(height: 20),
-                      ElevatedButton(
-                        onPressed: () {
-                          // Navigate to the next page or functionality
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => UtanguliziPage()),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 40,
-                            vertical: 15,
-                          ),
-                          backgroundColor: Colors.blueAccent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                        ),
-                        child: const Text(
-                          'Utangulizi',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+        centerTitle: true,
+        backgroundColor: Colors.blueAccent,
+        elevation: 0,
+      ),
+      drawer: AppDrawer(), // Custom Drawer
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            // Welcome Card
+            Card(
+              elevation: 10,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
               ),
-              const SizedBox(height: 30),
-              // Additional Features - Cards Positioned Higher
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  FeatureCard(
-                    icon: Icons.fitness_center,
-                    title: ' Mazoezi ',
-                    color: Colors.green,
-                    onTap: () {
-                      // Navigate to the Workouts page
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => MazoeziPage()),
-                          );
-                    },
-                  ),
-                  FeatureCard(
-                    icon: Icons.food_bank,
-                    title: 'Lishe Bora',
-                    color: Colors.orange,
-                    onTap: () {
-                      // Navigate to the Nutrition page
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LisheBoraPage()),
-                          );
-                    },
-                  ),
-                  FeatureCard(
-                    icon: Icons.show_chart,
-                    title: 'Maendeleo',
-                    color: Colors.purple,
-                    onTap: () {
-                      // Navigate to the Progress page
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => MaendeleoPage()),
-                          );
-                    },
-                  ),
-                ],
-              ),
-              Spacer(), // Pushes the buttons to the bottom
-              // Impressive Animated Buttons at the Bottom
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  BounceInUp(
-                    child: ElevatedButton(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      'Karibu kwenye Safari yako ya Afya',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    const Text(
+                      'Tuanzishe mabadiliko yako leo!',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    SizedBox(height: 20),
+                    ElevatedButton(
                       onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Selectprogram()),
-                          );
+                        // Navigate to the next page or functionality
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UtanguliziPage()),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 30,
+                          horizontal: 40,
                           vertical: 15,
                         ),
                         backgroundColor: Colors.blueAccent,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(30),
                         ),
                       ),
                       child: const Text(
-                        'Huduma',
-                        style: TextStyle(fontSize: 16),
+                        'Utangulizi',
+                        style: TextStyle(fontSize: 18),
                       ),
                     ),
-                  ),
-                  BounceInUp(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MagicWeightLossProgram()),
-                );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 30,
-                          vertical: 15,
-                        ),
-                        backgroundColor: Colors.blueAccent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                      ),
-                      child: const Text(
-                        'Endelea na Mpango',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              const SizedBox(height: 30), // Add some space at the bottom
-            ],
-          ),
+            ),
+            const SizedBox(height: 30),
+            // Additional Features - Cards Positioned Higher
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                FeatureCard(
+                  icon: Icons.fitness_center,
+                  title: ' Mazoezi ',
+                  color: Colors.green,
+                  onTap: () {
+                    // Navigate to the Workouts page
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MazoeziPage()),
+                        );
+                  },
+                ),
+                FeatureCard(
+                  icon: Icons.food_bank,
+                  title: 'Lishe Bora',
+                  color: Colors.orange,
+                  onTap: () {
+                    // Navigate to the Nutrition page
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LisheBoraPage()),
+                        );
+                  },
+                ),
+                FeatureCard(
+                  icon: Icons.show_chart,
+                  title: 'Maendeleo',
+                  color: Colors.purple,
+                  onTap: () {
+                    // Navigate to the Progress page
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MaendeleoPage()),
+                        );
+                  },
+                ),
+              ],
+            ),
+            Spacer(), // Pushes the buttons to the bottom
+            // Impressive Animated Buttons at the Bottom
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                BounceInUp(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      _navigateToPage(context, SecondPage());
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 30,
+                        vertical: 15,
+                      ),
+                      backgroundColor: Colors.redAccent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    child: const Text(
+                      'Huduma',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                ),
+                BounceInUp(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      _navigateToPage(context, StatsPage());
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 30,
+                        vertical: 15,
+                      ),
+                      backgroundColor: Colors.blueAccent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    child: const Text(
+                      'Endelea na Mpango',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 30), // Add some space at the bottom
+          ],
         ),
-      );
-    }
+      ),
+    );
   }
+}
 
   class FeatureCard extends StatelessWidget {
     final IconData icon;
@@ -278,113 +271,113 @@
     }
   }
 
-  class AppDrawer extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-      return Drawer(
-        child: Column(
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blueAccent,
-                image: DecorationImage(
-                  image: AssetImage('assets/images/drawer_bg.jpg'),
-                  fit: BoxFit.cover,
+class AppDrawer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: Column(
+        children: [
+          const DrawerHeader(
+            decoration: BoxDecoration(
+              color: Colors.blueAccent,
+              image: DecorationImage(
+                image: AssetImage('assets/images/drawer_bg.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                'Dr Silas',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              child: Align(
-                alignment: Alignment.bottomLeft,
-                child: Text(
-                  'Dr Silas',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
+            ),
+          ),
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                ListTile(
+                  leading: Icon(Icons.home),
+                  title: Text('Nyumbani'),
+                  onTap: () {
+                    // Navigate to Home
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePage()),
+                    );
+                  },
                 ),
-              ),
+                ListTile(
+                  leading: Icon(Icons.person),
+                  title: Text('Wasifu'),
+                  onTap: () {
+                    // Navigate to Profile
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.settings),
+                  title: Text('Mipangilio'),
+                  onTap: () {
+                    // Navigate to Settings
+                  },
+                ),
+              ],
             ),
-            Expanded(
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: [
-                  ListTile(
-                    leading: Icon(Icons.home),
-                    title: Text('Nyumbani'),
-                    onTap: () {
-                      // Navigate to Home
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomePage()),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.person),
-                    title: Text('Wasifu'),
-                    onTap: () {
-                      // Navigate to Profile
-                    },
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.settings),
-                    title: Text('Mipangilio'),
-                    onTap: () {
-                      // Navigate to Settings
-                    },
-                  ),
-                ],
-              ),
-            ),
-            Divider(),
-            ListTile(
-              leading: Icon(Icons.help),
-              title: Text('Huduma & Maoni'),
-              onTap: () {
-                // Navigate to Help & Feedback
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('Toka'),
-              onTap: () {
-                // Handle Logout
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const WelcomeBack()),
-                );
-              },
-            ),
-          ],
-        ),
-      );
-    }
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.help),
+            title: Text('Huduma & Maoni'),
+            onTap: () {
+              // Navigate to Help & Feedback
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.logout),
+            title: Text('Toka'),
+            onTap: () {
+              // Handle Logout
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const WelcomeBack()),
+              );
+            },
+          ),
+        ],
+      ),
+    );
   }
+}
 
-  class SecondPage extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text('Second Page'),
-        ),
-        body: Center(
-          child: Text('Welcome to the second page!'),
-        ),
-      );
-    }
+class SecondPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Second Page'),
+      ),
+      body: Center(
+        child: Text('Welcome to the second page!'),
+      ),
+    );
   }
+}
 
-  class StatsPage extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text('Stats Page'),
-        ),
-        body: Center(
-          child: Text('Welcome to the stats page!'),
-        ),
-      );
-    }
+class StatsPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Stats Page'),
+      ),
+      body: Center(
+        child: Text('Welcome to the stats page!'),
+      ),
+    );
   }
+}
