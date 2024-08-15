@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kiganjani_afya_check/views/pages/selectProgram.dart';
-import 'package:kiganjani_afya_check/views/pages/Assessment/sex.dart';
 
 class StartPage extends StatefulWidget {
   @override
@@ -15,62 +14,47 @@ class _StartPageState extends State<StartPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Stack(
-          children: [
-            // Background Image
-            Positioned.fill(
-              child: Image.asset(
-                'assets/images/back2.png', // Add a fitness-related background image
-                fit: BoxFit.cover,
-                color: Colors.black.withOpacity(0.3), // Darken the image for text contrast
-                colorBlendMode: BlendMode.darken,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            // Determine sizes based on available height and width
+            final double height = constraints.maxHeight;
+            final double width = constraints.maxWidth;
+
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: width * 0.05),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 60), // Space for the top of the screen
+                  SizedBox(height: height * 0.05),
                   Text(
                     'Hongera kwa kuchukua hatua ya kwanza kuelekea wewe mwenye afya bora!',
                     style: TextStyle(
-                      fontSize: 26,
+                      fontSize: width * 0.06, // Responsive font size
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      shadows: [
-                        Shadow(
-                          blurRadius: 10.0,
-                          color: Colors.black.withOpacity(0.7),
-                          offset: const Offset(2, 2),
-                        ),
-                      ],
+                      color: Colors.blue.shade700,
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 20),
-                  Text(
-                    'Safari yako ya kufikia malengo yako ya kupunguza uzito inaanza sasa.\n\n'
-                    'Baki na moyo, baki kuwa na matumaini, na jione ukibadilika!\n\n'
-                    'Kumbuka, kila hatua ndogo ina hesabu kuelekea mafanikio makubwa.\n\n'
-                    'Unaweza! Kubali safari na sherehekea kila mafanikio.\n\n'
-                    'Jitolee kwa malengo yako na kuwa na uthabiti – mwenyewe wa baadaye atakushukuru!\n\n'
-                    'Amini mwenyewe na uwezo wako wa kufanya mabadiliko chanya.\n\n'
-                    'Jiandae kuanza safari yenye matokeo yenye afya bora na ustawi!',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                      shadows: [
-                        Shadow(
-                          blurRadius: 8.0,
-                          color: Colors.black.withOpacity(0.7),
-                          offset: const Offset(2, 2),
+                  SizedBox(height: height * 0.02),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Text(
+                        'Safari yako ya kufikia malengo yako ya kupunguza uzito inaanza sasa.\n\n'
+                        'Baki na moyo, baki kuwa na matumaini, na jione ukibadilika!\n\n'
+                        'Kumbuka, kila hatua ndogo ina hesabu kuelekea mafanikio makubwa.\n\n'
+                        'Unaweza! Kubali safari na sherehekea kila mafanikio.\n\n'
+                        'Jitolee kwa malengo yako na kuwa na uthabiti – mwenyewe wa baadaye atakushukuru!\n\n'
+                        'Amini mwenyewe na uwezo wako wa kufanya mabadiliko chanya.\n\n'
+                        'Jiandae kuanza safari yenye matokeo yenye afya bora na ustawi!',
+                        style: TextStyle(
+                          fontSize: width * 0.045, // Responsive font size
+                          color: Colors.black87,
                         ),
-                      ],
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                    textAlign: TextAlign.center,
                   ),
-                  const Spacer(),
+                  SizedBox(height: height * 0.03),
                   Row(
                     children: [
                       Checkbox(
@@ -83,32 +67,37 @@ class _StartPageState extends State<StartPage> {
                         checkColor: Colors.white,
                         activeColor: Colors.blue.shade700,
                       ),
-                      const Expanded(
+                      Expanded(
                         child: Text(
                           'Nakubali masharti na masharti',
                           style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
+                            fontSize: width * 0.04, // Responsive font size
+                            color: Colors.black87,
                           ),
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10),
+                  SizedBox(height: height * 0.02),
                   ElevatedButton(
                     onPressed: _isAccepted
                         ? () {
-                                Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SelectProgram()),
-              );
-                            // Handle start button press
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SelectProgram()),
+                            );
                           }
                         : null, // Disable the button if the terms are not accepted
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue.shade700,
-                      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-                      textStyle: const TextStyle(fontSize: 18),
+                      padding: EdgeInsets.symmetric(
+                        vertical: height * 0.02,
+                        horizontal: width * 0.2,
+                      ),
+                      textStyle: TextStyle(
+                        fontSize: width * 0.05, // Responsive font size
+                      ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0),
                       ),
@@ -116,11 +105,11 @@ class _StartPageState extends State<StartPage> {
                     ),
                     child: const Text('Anza Sasa'),
                   ),
-                  const SizedBox(height: 40),
+                  SizedBox(height: height * 0.05),
                 ],
               ),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kiganjani_afya_check/views/auth/slidingLogoin.dart';
 import 'package:kiganjani_afya_check/views/auth/welcome_back.dart';
 import 'package:lottie/lottie.dart';
-
 import 'auth/welcome_back.dart';
 
 class SplashScreen extends StatefulWidget {
