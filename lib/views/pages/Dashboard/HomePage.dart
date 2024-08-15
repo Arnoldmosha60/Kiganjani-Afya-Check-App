@@ -1,17 +1,11 @@
   import 'package:flutter/material.dart';
   import 'package:animate_do/animate_do.dart';
-  import 'package:kiganjani_afya_check/main.dart';
   import 'package:kiganjani_afya_check/views/auth/welcome_back.dart';
   import 'package:kiganjani_afya_check/views/pages/Dashboard/Nutrition.dart';
   import 'package:kiganjani_afya_check/views/pages/Dashboard/Progress.dart';
   import 'package:kiganjani_afya_check/views/pages/Dashboard/introduction.dart';
-  import 'package:kiganjani_afya_check/views/pages/Dashboard/program.dart';
   import 'package:kiganjani_afya_check/views/pages/Dashboard/workout.dart';
-  import 'package:kiganjani_afya_check/views/pages/selectProgram.dart';
-
-void main() {
-  runApp(MyApp());
-}
+import 'package:kiganjani_afya_check/views/pages/Settings/settings.dart';
 
   class Homepage extends StatelessWidget {
     @override
@@ -87,12 +81,12 @@ void main() {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     const Text(
                       'Tuanzishe mabadiliko yako leo!',
                       style: TextStyle(fontSize: 16),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
                         // Navigate to the next page or functionality
@@ -167,7 +161,7 @@ void main() {
                 ),
               ],
             ),
-            Spacer(), // Pushes the buttons to the bottom
+            const Spacer(), // Pushes the buttons to the bottom
             // Impressive Animated Buttons at the Bottom
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -280,10 +274,10 @@ class AppDrawer extends StatelessWidget {
           const DrawerHeader(
             decoration: BoxDecoration(
               color: Colors.blueAccent,
-              image: DecorationImage(
-                image: AssetImage('assets/images/drawer_bg.jpg'),
-                fit: BoxFit.cover,
-              ),
+              // image: DecorationImage(
+              //   image: AssetImage('assets/images/customer-service.png'),
+              //   fit: BoxFit.cover,
+              // ),
             ),
             child: Align(
               alignment: Alignment.bottomLeft,
@@ -302,8 +296,8 @@ class AppDrawer extends StatelessWidget {
               padding: EdgeInsets.zero,
               children: [
                 ListTile(
-                  leading: Icon(Icons.home),
-                  title: Text('Nyumbani'),
+                  leading: const Icon(Icons.home),
+                  title: const Text('Nyumbani'),
                   onTap: () {
                     // Navigate to Home
                     Navigator.push(
@@ -313,33 +307,36 @@ class AppDrawer extends StatelessWidget {
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('Wasifu'),
+                  leading: const Icon(Icons.person),
+                  title: const Text('Wasifu'),
                   onTap: () {
                     // Navigate to Profile
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.settings),
-                  title: Text('Mipangilio'),
+                  leading: const Icon(Icons.settings),
+                  title: const Text('Mipangilio'),
                   onTap: () {
-                    // Navigate to Settings
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SettingsPage()),
+                    );
                   },
                 ),
               ],
             ),
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            leading: Icon(Icons.help),
-            title: Text('Huduma & Maoni'),
+            leading: const Icon(Icons.help),
+            title: const Text('Huduma & Maoni'),
             onTap: () {
               // Navigate to Help & Feedback
             },
           ),
           ListTile(
-            leading: Icon(Icons.logout),
-            title: Text('Toka'),
+            leading: const Icon(Icons.logout),
+            title: const Text('Toka'),
             onTap: () {
               // Handle Logout
               Navigator.push(
@@ -359,9 +356,9 @@ class SecondPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Second Page'),
+        title: const Text('Second Page'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Welcome to the second page!'),
       ),
     );
@@ -373,9 +370,9 @@ class StatsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stats Page'),
+        title: const Text('Stats Page'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Welcome to the stats page!'),
       ),
     );
