@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kiganjani_afya_check/main.dart';
-import 'package:kiganjani_afya_check/views/pages/sex.dart';
+import 'package:kiganjani_afya_check/views/pages/Assessment/sex.dart';
 
 void main() {
   runApp(MyApp());

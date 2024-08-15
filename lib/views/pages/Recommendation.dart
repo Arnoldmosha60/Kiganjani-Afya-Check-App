@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:kiganjani_afya_check/main.dart';
+import 'package:kiganjani_afya_check/views/pages/Dashboard/HomePage.dart';
 
 void main() {
   runApp(MyApp());
@@ -136,19 +137,23 @@ class ResultsPage extends StatelessWidget {
                     child: Text('Tazama Ripoti ya Kina'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blueAccent,
-                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                      textStyle: TextStyle(fontSize: 16),
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                      textStyle: const TextStyle(fontSize: 16),
                     ),
                   ),
                   OutlinedButton(
                     onPressed: () {
                       // Add navigation or action here
+                         Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Homepage()), // Replace `NextPage` with the appropriate page
+                      );
                     },
-                    child: Text('Anza Program'),
                     style: OutlinedButton.styleFrom(
-                      foregroundColor: Colors.blue, padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                      textStyle: TextStyle(fontSize: 16),
+                      foregroundColor: Colors.blue, padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                      textStyle: const TextStyle(fontSize: 16),
                     ),
+                    child: Text('Anza Program'),
                   ),
                 ],
               ),
