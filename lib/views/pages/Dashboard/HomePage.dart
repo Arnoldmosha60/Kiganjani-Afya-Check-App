@@ -1,49 +1,50 @@
-  import 'package:flutter/material.dart';
-  import 'package:animate_do/animate_do.dart';
-  import 'package:kiganjani_afya_check/views/auth/welcome_back.dart';
-  import 'package:kiganjani_afya_check/views/pages/Dashboard/Nutrition.dart';
-  import 'package:kiganjani_afya_check/views/pages/Dashboard/Progress.dart';
-  import 'package:kiganjani_afya_check/views/pages/Dashboard/introduction.dart';
-  import 'package:kiganjani_afya_check/views/pages/Dashboard/workout.dart';
+import 'package:flutter/material.dart';
+import 'package:animate_do/animate_do.dart';
+import 'package:kiganjani_afya_check/views/auth/welcome_back.dart';
+import 'package:kiganjani_afya_check/views/pages/Dashboard/Nutrition.dart';
+import 'package:kiganjani_afya_check/views/pages/Dashboard/Progress.dart';
+import 'package:kiganjani_afya_check/views/pages/Dashboard/introduction.dart';
+import 'package:kiganjani_afya_check/views/pages/Dashboard/workout.dart';
+import 'package:kiganjani_afya_check/views/pages/Profile/user_profile.dart';
 import 'package:kiganjani_afya_check/views/pages/Settings/settings.dart';
 
-  class Homepage extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-      return MaterialApp(
-        title: 'home',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          fontFamily: 'Roboto',
-        ),
-        home: HomePage(),
-        debugShowCheckedModeBanner: false,
-      );
-    }
+class Homepage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'home',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        fontFamily: 'Roboto',
+      ),
+      home: HomePage(),
+      debugShowCheckedModeBanner: false,
+    );
   }
+}
 
-  class HomePage extends StatelessWidget {
-    void _navigateToPage(BuildContext context, Widget page) {
-      Navigator.push(
-        context,
-        PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => page,
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            const begin = Offset(0.0, 1.0);
-            const end = Offset.zero;
-            const curve = Curves.ease;
+class HomePage extends StatelessWidget {
+  void _navigateToPage(BuildContext context, Widget page) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) => page,
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const begin = Offset(0.0, 1.0);
+          const end = Offset.zero;
+          const curve = Curves.ease;
 
-            var tween =
-                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+          var tween =
+              Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 
-            return SlideTransition(
-              position: animation.drive(tween),
-              child: child,
-            );
-          },
-        ),
-      );
-    }
+          return SlideTransition(
+            position: animation.drive(tween),
+            child: child,
+          );
+        },
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -126,11 +127,10 @@ import 'package:kiganjani_afya_check/views/pages/Settings/settings.dart';
                   color: Colors.green,
                   onTap: () {
                     // Navigate to the Workouts page
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MazoeziPage()),
-                        );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MazoeziPage()),
+                    );
                   },
                 ),
                 FeatureCard(
@@ -139,11 +139,10 @@ import 'package:kiganjani_afya_check/views/pages/Settings/settings.dart';
                   color: Colors.orange,
                   onTap: () {
                     // Navigate to the Nutrition page
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LisheBoraPage()),
-                        );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LisheBoraPage()),
+                    );
                   },
                 ),
                 FeatureCard(
@@ -152,11 +151,10 @@ import 'package:kiganjani_afya_check/views/pages/Settings/settings.dart';
                   color: Colors.purple,
                   onTap: () {
                     // Navigate to the Progress page
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MaendeleoPage()),
-                        );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MaendeleoPage()),
+                    );
                   },
                 ),
               ],
@@ -218,52 +216,52 @@ import 'package:kiganjani_afya_check/views/pages/Settings/settings.dart';
   }
 }
 
-  class FeatureCard extends StatelessWidget {
-    final IconData icon;
-    final String title;
-    final Color color;
-    final VoidCallback onTap;
+class FeatureCard extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final Color color;
+  final VoidCallback onTap;
 
-    FeatureCard({
-      required this.icon,
-      required this.title,
-      required this.color,
-      required this.onTap,
-    });
+  FeatureCard({
+    required this.icon,
+    required this.title,
+    required this.color,
+    required this.onTap,
+  });
 
-    @override
-    Widget build(BuildContext context) {
-      return InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(15),
-        child: Container(
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(15),
-          ),
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Icon(
-                icon,
-                size: 40,
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(15),
+      child: Container(
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Icon(
+              icon,
+              size: 40,
+              color: Colors.white,
+            ),
+            const SizedBox(height: 10),
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
-              const SizedBox(height: 10),
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
-      );
-    }
+      ),
+    );
   }
+}
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -310,7 +308,12 @@ class AppDrawer extends StatelessWidget {
                   leading: const Icon(Icons.person),
                   title: const Text('Wasifu'),
                   onTap: () {
-                    // Navigate to Profile
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProfilePage(),
+                      ),
+                    );
                   },
                 ),
                 ListTile(
@@ -319,7 +322,9 @@ class AppDrawer extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const SettingsPage()),
+                      MaterialPageRoute(
+                        builder: (context) => const SettingsPage(),
+                      ),
                     );
                   },
                 ),
