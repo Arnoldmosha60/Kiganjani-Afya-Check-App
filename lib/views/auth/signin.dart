@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 import '../../theme/theme.dart';
 import '../../widget/custom_scaffold.dart';
 import '../../widget/logo.dart';
+import '../pages/Dashboard/HomePage.dart';
 import '../pages/startup.dart';
 
 class LoginPage extends StatefulWidget {
@@ -191,7 +192,7 @@ class _LoginPageState extends State<LoginPage> {
                       const SizedBox(
                         height: 25.0,
                       ),
-                      
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -247,6 +248,7 @@ class _LoginPageState extends State<LoginPage> {
                                 mobileSnackBarPosition:
                                     MobileSnackBarPosition.bottom,
                               ).show(context);
+
                             }
                           },
                           child: const Text('Ingia'),
