@@ -3,7 +3,7 @@ import 'package:kiganjani_afya_check/main.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/HomePage.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(Recommendation());
 }
 
 class Recommendation extends StatelessWidget {
@@ -78,7 +78,7 @@ class ResultsPage extends StatelessWidget {
                               ),
                             ),
                             SizedBox(height: 16),
-                            Row(
+                            const Row(
                               children: [
                                 Icon(Icons.trending_up, color: Colors.green, size: 40),
                                 SizedBox(width: 10),
@@ -104,7 +104,7 @@ class ResultsPage extends StatelessWidget {
                               style: TextStyle(fontSize: 18),
                             ),
                             SizedBox(height: 16),
-                            Text(
+                            const Text(
                               'Uzito uliopendekezwa na WHO:',
                               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                             ),
@@ -177,7 +177,7 @@ class ResultsPage extends StatelessWidget {
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => Homepage()), // Replace `NextPage` with the appropriate page
+                                MaterialPageRoute(builder: (context) => HomePage()), // Replace `NextPage` with the appropriate page
                               );
                             },
                             style: OutlinedButton.styleFrom(

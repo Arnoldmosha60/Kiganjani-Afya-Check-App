@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kiganjani_afya_check/views/auth/signin.dart';
-import 'package:kiganjani_afya_check/views/pages/Dashboard/HomePage.dart';
 import 'package:kiganjani_afya_check/views/pages/startup.dart';
 import 'package:animated_snack_bar/animated_snack_bar.dart';  // Import the package
 
@@ -193,7 +192,6 @@ class _SignupPageState extends State<SignupPage> {
                           onPressed: () {
                             if (_formSignupKey.currentState!.validate() &&
                                 agreePersonalData) {
-
                               // Show an animated success notification
                               AnimatedSnackBar.material(
                                 'Usajili Umefaulu 🎉',
@@ -211,13 +209,6 @@ class _SignupPageState extends State<SignupPage> {
                                   ),
                                 );
                               });
-                              // Navigate to HomePage on successful validation
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => HomePage(),
-                                ),
-                              );
                             } else if (!agreePersonalData) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
