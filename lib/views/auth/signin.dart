@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kiganjani_afya_check/views/auth/signup.dart';
-import 'package:kiganjani_afya_check/views/pages/HomePage.dart';
+import 'package:kiganjani_afya_check/views/pages/Dashboard/HomePage.dart';
 
 import '../../theme/theme.dart';
 import '../../widget/custom_scaffold.dart';
@@ -165,7 +165,7 @@ class _LoginPageState extends State<LoginPage> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const Home(),
+                                  builder: (context) => Homepage(),
                                 ),
                               );
                             } else if (!rememberPassword) {
