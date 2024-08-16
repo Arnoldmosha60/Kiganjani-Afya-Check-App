@@ -140,7 +140,7 @@ class _ProgramPageState extends State<ProgramPage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Homepage()),
+                    MaterialPageRoute(builder: (context) => HomePage()),
                   );
                 },
                 child: Text('Rudi kwenye Ukurasa wa Nyumbani'),

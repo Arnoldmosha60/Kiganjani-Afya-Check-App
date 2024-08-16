@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:kiganjani_afya_check/main.dart';
+import 'package:kiganjani_afya_check/views/auth/signin.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/Nutrition.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/Progress.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/fasting.dart';
@@ -13,7 +13,7 @@ void main() {
   runApp(MyApp());
 }
 
-class Homepage extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -81,7 +81,7 @@ class HomePage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     const Text(
-                      'Karibu kwenye Safari yako ya Afya Njema',
+                      'Karibu kwenye Safari yako ya Afya',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -191,7 +191,7 @@ class HomePage extends StatelessWidget {
                       ),
                       SizedBox(height: 10),
                       const Text(
-                        'Fahamu kuhusu maendeleo, jitihada na matokeo!',
+                        'Fahamu maendeleo, jitihada na matokeo yako',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 16,
@@ -231,18 +231,14 @@ class HomePage extends StatelessWidget {
                 BounceInUp(
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SelectProgram()),
-                      );
+                      _navigateToPage(context, Selectprogram());
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 30,
                         vertical: 15,
                       ),
-                      backgroundColor: Colors.blue,
+                      backgroundColor: Colors.blueAccent,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
@@ -283,8 +279,6 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-class SecondPage {}
 
 class FeatureCard extends StatelessWidget {
   final IconData icon;
@@ -359,7 +353,7 @@ class AppDrawer extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
+                    Expanded(
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
@@ -400,7 +394,10 @@ class AppDrawer extends StatelessWidget {
                   leading: Icon(Icons.logout),
                   title: Text('Logout'),
                   onTap: () {
-                    Navigator.pop(context); // Close the drawer
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LoginPage()),
+                  ); // Close the drawer
                     // Perform logout operation
                   },
                 ),
@@ -412,3 +409,4 @@ class AppDrawer extends StatelessWidget {
     );
   }
 }
+
