@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kiganjani_afya_check/main.dart';
-import 'package:kiganjani_afya_check/views/pages/Assessment/sex.dart';
+import 'package:kiganjani_afya_check/views/pages/Assessment/gender.dart';
 
 void main() {
   runApp(MyApp());
@@ -43,40 +43,40 @@ class SelectProgram extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Added margin to lift the card slightly
-            Transform.translate(
-              offset: Offset(0, -220), // Adjust the vertical offset as needed
-              child: OptionCard(
-                title: 'Punguza Uzito Kimuujiza',
-                description:
-                    'Fikia malengo yako ya uzito kwa haraka na kwa ufanisi kupitia njia za kibunifu.',
-                icon: Icons.flash_on,
-                color: Colors.green.shade700,
-                onTap: () {
-                  // Navigate to the first option page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AgeGroupPage()),
-                  );
-                },
-              ),
-            ),
-            const SizedBox(height: 20),
-            Transform.translate(
-              offset: Offset(0, -220), // Adjust the vertical offset as needed
-              child: OptionCard(
-                title: 'Tuzo la Mpunguza Uzito Bora Tanzania',
-                description:
-                    'Shiriki na ushinde tuzo kama mpunguza uzito bora nchini Tanzania.',
-                icon: Icons.star,
-                color: Colors.orange.shade700,
-                onTap: () {
-                  // Navigate to the second option page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => TuzoPage()),
-                  );
-                },
+            // Use MediaQuery to adjust the vertical offset dynamically
+            Expanded(
+              child: ListView(
+                children: [
+                  OptionCard(
+                    title: 'Punguza Uzito Kimuujiza',
+                    description:
+                        'Fikia malengo yako ya uzito kwa haraka na kwa ufanisi kupitia njia za kibunifu.',
+                    icon: Icons.flash_on,
+                    color: Colors.green.shade700,
+                    onTap: () {
+                      // Navigate to the first option page
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AgeGroupPage()),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                  OptionCard(
+                    title: 'Tuzo la Mpunguza Uzito Bora Tanzania',
+                    description:
+                        'Shiriki na ushinde tuzo kama mpunguza uzito bora nchini Tanzania.',
+                    icon: Icons.star,
+                    color: Colors.orange.shade700,
+                    onTap: () {
+                      // Navigate to the second option page
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => TuzoPage()),
+                      );
+                    },
+                  ),
+                ],
               ),
             ),
           ],
@@ -112,13 +112,14 @@ class OptionCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           boxShadow: const [
             BoxShadow(
-              color: Colors.green, // Updated shadow color to black for better contrast
+              color: Colors.black, // Updated shadow color for better contrast
               blurRadius: 15,
               offset: Offset(0, 10),
             ),
           ],
         ),
         padding: const EdgeInsets.all(20),
+        margin: const EdgeInsets.symmetric(vertical: 10), // Add vertical margin for spacing
         child: Row(
           children: [
             Icon(
@@ -157,20 +158,7 @@ class OptionCard extends StatelessWidget {
   }
 }
 
-// Placeholder page for Punguza Uzito Kimuujiza
-class PunguzaUzitoPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Punguza Uzito Kimuujiza'),
-      ),
-      body: Center(
-        child: Text('Welcome to Punguza Uzito Kimuujiza!'),
-      ),
-    );
-  }
-}
+
 
 // Placeholder page for Tuzo la Mpunguza Uzito Bora Tanzania
 class TuzoPage extends StatelessWidget {

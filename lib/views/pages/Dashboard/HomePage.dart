@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:kiganjani_afya_check/main.dart';
-import 'package:kiganjani_afya_check/views/auth/welcome_back.dart';
+import 'package:kiganjani_afya_check/views/auth/signin.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/Nutrition.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/Progress.dart';
+import 'package:kiganjani_afya_check/views/pages/Dashboard/fasting.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/introduction.dart';
+import 'package:kiganjani_afya_check/views/pages/Dashboard/program.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/workout.dart';
+import 'package:kiganjani_afya_check/views/pages/selectProgram.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class Homepage extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -126,15 +128,13 @@ class HomePage extends StatelessWidget {
               children: [
                 FeatureCard(
                   icon: Icons.fitness_center,
-                  title: ' Mazoezi ',
+                  title: 'Mazoezi',
                   color: Colors.green,
                   onTap: () {
-                    // Navigate to the Workouts page
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MazoeziPage()),
-                        );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MazoeziPage()),
+                    );
                   },
                 ),
                 FeatureCard(
@@ -142,28 +142,86 @@ class HomePage extends StatelessWidget {
                   title: 'Lishe Bora',
                   color: Colors.orange,
                   onTap: () {
-                    // Navigate to the Nutrition page
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LisheBoraPage()),
-                        );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LisheBoraPage()),
+                    );
                   },
                 ),
                 FeatureCard(
-                  icon: Icons.show_chart,
-                  title: 'Maendeleo',
+                  icon: Icons.star,
+                  title: 'Kufunga',
                   color: Colors.purple,
                   onTap: () {
-                    // Navigate to the Progress page
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MaendeleoPage()),
-                        );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => FastingPage()),
+                    );
                   },
                 ),
               ],
+            ),
+            const SizedBox(height: 20),
+            // Big Central Card
+            ElasticIn(
+              child: Card(
+                elevation: 12,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                color: Colors.blueAccent,
+                child: Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        Icons.show_chart,
+                        size: 60,
+                        color: Colors.white,
+                      ),
+                      SizedBox(height: 10),
+                      const Text(
+                        'Maendeleo yako',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      const Text(
+                        'Fahamu maendeleo, jitihada na matokeo yako',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white70,
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: () {
+                          _navigateToPage(context, MaendeleoPage());
+                        },
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 40,
+                            vertical: 15,
+                          ),
+                          backgroundColor: Colors.orange,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                        ),
+                        child: const Text(
+                          'Jifunze Zaidi',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
             Spacer(), // Pushes the buttons to the bottom
             // Impressive Animated Buttons at the Bottom
@@ -173,14 +231,14 @@ class HomePage extends StatelessWidget {
                 BounceInUp(
                   child: ElevatedButton(
                     onPressed: () {
-                      _navigateToPage(context, SecondPage());
+                      _navigateToPage(context, Selectprogram());
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 30,
                         vertical: 15,
                       ),
-                      backgroundColor: Colors.redAccent,
+                      backgroundColor: Colors.blueAccent,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
@@ -194,7 +252,7 @@ class HomePage extends StatelessWidget {
                 BounceInUp(
                   child: ElevatedButton(
                     onPressed: () {
-                      _navigateToPage(context, StatsPage());
+                      _navigateToPage(context, MagicWeightLossProgram());
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
@@ -295,56 +353,56 @@ class AppDrawer extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
+                    Expanded(
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
                 ListTile(
                   leading: Icon(Icons.home),
-                  title: Text('Nyumbani'),
+                  title: Text('Home'),
                   onTap: () {
-                    // Navigate to Home
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomePage()),
-                    );
+                    Navigator.pop(context); // Close the drawer
+                    // Navigate to Home page
                   },
                 ),
                 ListTile(
                   leading: Icon(Icons.person),
-                  title: Text('Wasifu'),
+                  title: Text('Profile'),
                   onTap: () {
-                    // Navigate to Profile
+                    Navigator.pop(context); // Close the drawer
+                    // Navigate to Profile page
                   },
                 ),
                 ListTile(
                   leading: Icon(Icons.settings),
-                  title: Text('Mipangilio'),
+                  title: Text('Settings'),
                   onTap: () {
-                    // Navigate to Settings
+                    Navigator.pop(context); // Close the drawer
+                    // Navigate to Settings page
+                  },
+                ),
+                Divider(),
+                ListTile(
+                  leading: Icon(Icons.help),
+                  title: Text('Help & Feedback'),
+                  onTap: () {
+                    Navigator.pop(context); // Close the drawer
+                    // Navigate to Help & Feedback page
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.logout),
+                  title: Text('Logout'),
+                  onTap: () {
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LoginPage()),
+                  ); // Close the drawer
+                    // Perform logout operation
                   },
                 ),
               ],
             ),
-          ),
-          Divider(),
-          ListTile(
-            leading: Icon(Icons.help),
-            title: Text('Huduma & Maoni'),
-            onTap: () {
-              // Navigate to Help & Feedback
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.logout),
-            title: Text('Toka'),
-            onTap: () {
-              // Handle Logout
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const WelcomeBack()),
-              );
-            },
           ),
         ],
       ),
@@ -352,30 +410,3 @@ class AppDrawer extends StatelessWidget {
   }
 }
 
-class SecondPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Second Page'),
-      ),
-      body: Center(
-        child: Text('Welcome to the second page!'),
-      ),
-    );
-  }
-}
-
-class StatsPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Stats Page'),
-      ),
-      body: Center(
-        child: Text('Welcome to the stats page!'),
-      ),
-    );
-  }
-}

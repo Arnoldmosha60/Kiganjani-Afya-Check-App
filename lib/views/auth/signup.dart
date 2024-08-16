@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:kiganjani_afya_check/main.dart';
 import 'package:kiganjani_afya_check/views/auth/signin.dart';
-import 'package:kiganjani_afya_check/views/pages/Dashboard/HomePage.dart';
-import 'package:kiganjani_afya_check/views/pages/Assessment/age.dart';
 import 'package:kiganjani_afya_check/views/pages/startup.dart';
+import 'package:animated_snack_bar/animated_snack_bar.dart';  // Import the package
+
 import '../../theme/theme.dart';
 import '../../widget/custom_scaffold.dart';
 import '../../widget/logo.dart';
@@ -43,13 +42,13 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ),
               child: SingleChildScrollView(
-                // get started form
+                // Get started form
                 child: Form(
                   key: _formSignupKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      // get started text
+                      // Get started text
                       Text(
                         'Anza Sasa',
                         style: TextStyle(
@@ -61,7 +60,7 @@ class _SignupPageState extends State<SignupPage> {
                       const SizedBox(
                         height: 40.0,
                       ),
-                      // full name
+                      // Full name
                       TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -92,7 +91,7 @@ class _SignupPageState extends State<SignupPage> {
                       const SizedBox(
                         height: 25.0,
                       ),
-                      // email
+                      // Email
                       TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -123,7 +122,7 @@ class _SignupPageState extends State<SignupPage> {
                       const SizedBox(
                         height: 25.0,
                       ),
-                      // password
+                      // Password
                       TextFormField(
                         obscureText: true,
                         obscuringCharacter: '*',
@@ -135,7 +134,7 @@ class _SignupPageState extends State<SignupPage> {
                         },
                         decoration: InputDecoration(
                           label: const Text('Nenosiri'),
-                          hintText: 'Ingiza Barua Pepe',
+                          hintText: 'Ingiza Nenosiri',
                           hintStyle: const TextStyle(
                             color: Colors.black26,
                           ),
@@ -156,7 +155,7 @@ class _SignupPageState extends State<SignupPage> {
                       const SizedBox(
                         height: 25.0,
                       ),
-                      // I agree to the processing
+                      // Agree to the processing
                       Row(
                         children: [
                           Checkbox(
@@ -186,25 +185,37 @@ class _SignupPageState extends State<SignupPage> {
                       const SizedBox(
                         height: 25.0,
                       ),
-                      // signup button
+                      // Sign-up button
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
                             if (_formSignupKey.currentState!.validate() &&
                                 agreePersonalData) {
-                              // Navigate to HomePage on successful validation
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => StartPage(),
-                                ),
-                              );
+                              // Show an animated success notification
+                              AnimatedSnackBar.material(
+                                'Usajili Umefaulu 🎉',
+                                type: AnimatedSnackBarType.success,
+                                duration: const Duration(seconds: 2),
+                                mobileSnackBarPosition: MobileSnackBarPosition.bottom,
+                              ).show(context);
+
+                              // Navigate to StartPage after a short delay
+                              Future.delayed(const Duration(seconds: 2), () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => StartPage(),
+                                  ),
+                                );
+                              });
                             } else if (!agreePersonalData) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                    content: Text(
-                                        'Tafadhali kubali usindikaji wa taarifa za kibinafsi')),
+                                  content: Text(
+                                    'Tafadhali kubali usindikaji wa taarifa za kibinafsi',
+                                  ),
+                                ),
                               );
                             }
                           },
@@ -214,7 +225,7 @@ class _SignupPageState extends State<SignupPage> {
                       const SizedBox(
                         height: 30.0,
                       ),
-                      // sign up divider
+                      // Sign up divider
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -259,6 +270,7 @@ class _SignupPageState extends State<SignupPage> {
                       const SizedBox(
                         height: 25.0,
                       ),
+                      // Already have an account?
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

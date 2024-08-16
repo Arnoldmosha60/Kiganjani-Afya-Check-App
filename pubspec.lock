@@ -9,6 +9,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.4"
+  animated_snack_bar:
+    dependency: "direct main"
+    description:
+      name: animated_snack_bar
+      sha256: "9ec2d79507546f65b82038c9ac5ddfc3c2fccf285def43070606b0ec0fc56d34"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.0"
   archive:
     dependency: transitive
     description:
@@ -33,6 +41,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  babstrap_settings_screen:
+    dependency: "direct main"
+    description:
+      name: babstrap_settings_screen
+      sha256: "34934aa138671a66ceb1b0e538f4c06db50903085faa195fdda76ae042d0666d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.7"
   boolean_selector:
     dependency: transitive
     description:
@@ -174,6 +190,11 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.0"
+  flutter_localizations:
+    dependency: "direct main"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_svg:
     dependency: transitive
     description:
@@ -248,6 +269,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.0"
+  intl:
+    dependency: "direct main"
+    description:
+      name: intl
+      sha256: d6f56758b7d3014a48af9701c085700aac781a92a87a62b1333b46d8879661cf
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.19.0"
   json_annotation:
     dependency: transitive
     description:

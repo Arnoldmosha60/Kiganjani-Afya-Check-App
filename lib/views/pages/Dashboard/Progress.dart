@@ -10,7 +10,7 @@ class MaendeleoPage extends StatelessWidget {
           'Maendeleo',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.purple,
+        backgroundColor: Colors.blue,
         centerTitle: true,
       ),
       body: SafeArea(
@@ -24,14 +24,14 @@ class MaendeleoPage extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
-                      colors: [Colors.purple, Colors.deepPurple],
+                      colors: [Colors.blue, Colors.blueGrey],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.purple.withOpacity(0.5),
+                        color: Colors.blue.withOpacity(0.5),
                         spreadRadius: 5,
                         blurRadius: 10,
                         offset: Offset(0, 3),
@@ -78,7 +78,7 @@ class MaendeleoPage extends StatelessWidget {
                   child: LineChart(
                     LineChartData(
                       gridData: FlGridData(show: false), // Hide grid lines if you don't need them
-                      titlesData: FlTitlesData(
+                      titlesData: const FlTitlesData(
                         leftTitles: AxisTitles(
                           sideTitles: SideTitles(showTitles: false), // Hide left titles
                         ),
@@ -102,10 +102,10 @@ class MaendeleoPage extends StatelessWidget {
                           ],
                           isCurved: true,
                           barWidth: 4,
-                          color: Colors.deepPurple,
+                          color: Colors.blueGrey,
                           belowBarData: BarAreaData(
                             show: true,
-                            color: Colors.deepPurple.withOpacity(0.2),
+                            color: Colors.blueGrey.withOpacity(0.2),
                           ),
                         ),
                       ],
@@ -125,11 +125,11 @@ class MaendeleoPage extends StatelessWidget {
                   },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(vertical: 15),
-                    backgroundColor: Colors.deepPurple,
+                    backgroundColor: Colors.blueGrey,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    shadowColor: Colors.purpleAccent,
+                    shadowColor: Colors.blueAccent,
                     elevation: 10,
                   ),
                   child: const Text(
