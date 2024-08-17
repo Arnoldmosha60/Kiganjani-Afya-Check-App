@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:kiganjani_afya_check/views/pages/Assessment/age.dart';
+import 'package:kiganjani_afya_check/views/pages/Assessment/height.dart';
 
-class AgeGroupPage extends StatefulWidget {
+import '../../../backend/model/assessment.dart';
+class GenderScreen extends StatefulWidget {
+
+  final AssessmentData data;
+
+   const GenderScreen({super.key, required this.data});
+
   @override
-  _AgeGroupPageState createState() => _AgeGroupPageState();
+  // ignore: library_private_types_in_public_api
+  _GenderGroupPageState createState() => _GenderGroupPageState();
 }
 
-class _AgeGroupPageState extends State<AgeGroupPage> {
-  String _selectedGender = '';
+class _GenderGroupPageState extends State<GenderScreen> {
+  String? _gender;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +39,7 @@ class _AgeGroupPageState extends State<AgeGroupPage> {
               Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                     colors: [Colors.blueAccent, Colors.lightBlueAccent],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -43,7 +50,7 @@ class _AgeGroupPageState extends State<AgeGroupPage> {
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     children: <Widget>[
-                      Text(
+                      const Text(
                         'CHAGUA JINSIA YAKO',
                         style: TextStyle(
                           fontSize: 28,
@@ -68,15 +75,11 @@ class _AgeGroupPageState extends State<AgeGroupPage> {
                                 ),
                                 leading: Radio<String>(
                                   value: 'male',
-                                  groupValue: _selectedGender,
+                                  groupValue: _gender,
                                   onChanged: (value) {
                                     setState(() {
-                                      _selectedGender = value!;
+                                      _gender = value!;
                                     });
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(builder: (context) => AgeEntryPage()),
-                                    );
                                   },
                                 ),
                               ),
@@ -86,20 +89,33 @@ class _AgeGroupPageState extends State<AgeGroupPage> {
                                 ),
                                 leading: Radio<String>(
                                   value: 'female',
-                                  groupValue: _selectedGender,
+                                  groupValue: _gender,
                                   onChanged: (value) {
                                     setState(() {
-                                      _selectedGender = value!;
+                                      _gender = value!;
                                     });
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(builder: (context) => AgeEntryPage()),
-                                    );
                                   },
                                 ),
                               ),
+                             ElevatedButton(
+                                onPressed: () {
+                                  if (_gender != null) {
+                                    widget.data.gender = _gender;
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => WeightScreen(data: widget.data),
+                                      ),
+                                    );
+                                  }
+                                },
+                                child: Text('Next'),
+           ),
+                              
                             ],
+                            
                           ),
+                          
                         ),
                       ),
                     ],
@@ -124,8 +140,4 @@ class _AgeGroupPageState extends State<AgeGroupPage> {
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: AgeGroupPage(),
-  ));
-}
+

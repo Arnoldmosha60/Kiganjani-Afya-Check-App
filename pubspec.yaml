@@ -24,8 +24,9 @@ dependencies:
   chewie: ^1.7.5
   fl_chart: ^0.68.0
   babstrap_settings_screen: ^0.1.7
-
+  provider: ^6.0.5
   http: ^1.2.2
+  
 
 
 flutter_icons:

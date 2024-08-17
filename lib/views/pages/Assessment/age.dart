@@ -1,18 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:kiganjani_afya_check/views/pages/Assessment/height.dart';
+import 'package:kiganjani_afya_check/views/pages/Assessment/gender.dart';
 
-class AgeEntryPage extends StatelessWidget {
+import '../../../backend/model/assessment.dart';
+
+class AgeScreen extends StatefulWidget {
+  final AssessmentData data;
+
+  const AgeScreen({super.key, required this.data});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _AgeScreenState createState() => _AgeScreenState();
+}
+
+class _AgeScreenState extends State<AgeScreen> {
+  int? _age;
+  final TextEditingController _controller = TextEditingController();
+  String? _errorText;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
+        title: const Text('Enter Age'),
+        backgroundColor: Colors.white,
+        elevation: 0,
         titleTextStyle: const TextStyle(
           color: Colors.black,
-          fontSize: 20, // Adjust font size for the app bar title
+          fontSize: 20,
         ),
-        backgroundColor: Colors.white,
-        elevation: 0, // Remove shadow to blend with the white background
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: SafeArea(
         child: Padding(
@@ -24,7 +41,7 @@ class AgeEntryPage extends StatelessWidget {
               const Text(
                 'UMRI',
                 style: TextStyle(
-                  fontSize: 32, // Larger font size for the main heading
+                  fontSize: 32,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
@@ -34,19 +51,16 @@ class AgeEntryPage extends StatelessWidget {
               const Text(
                 'Ingiza umri wako',
                 style: TextStyle(
-                  fontSize: 18, // Smaller font size for the subheading
+                  fontSize: 18,
                   color: Colors.black,
                 ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 40),
               SizedBox(
-                width: double
-                    .infinity, // Make the card fill the width of its parent
+                width: double.infinity,
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    maxWidth: 400, // Set a maximum width for the card
-                  ),
+                  constraints: const BoxConstraints(maxWidth: 400),
                   child: Card(
                     elevation: 4,
                     shape: RoundedRectangleBorder(
@@ -59,28 +73,54 @@ class AgeEntryPage extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.cake,
-                            size: 80, // Reduced icon size
+                            size: 80,
                             color: Colors.blue.shade700,
                           ),
                           const SizedBox(height: 20),
-                          AgeInputField(),
+                          TextField(
+                            controller: _controller,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              border: const OutlineInputBorder(),
+                              labelText: 'Umri',
+                              hintText: 'Ingiza umri wako',
+                              errorText: _errorText,
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                _age = int.tryParse(value);
+                                _errorText = (_age == null || _age! <= 0)
+                                    ? 'Tafadhali ingiza umri sahihi'
+                                    : null;
+                              });
+                            },
+                          ),
                           const SizedBox(height: 20),
                           ElevatedButton(
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HeightEntryPage()),
-                              );
+                              if (_age != null && _age! > 0) {
+                                widget.data.age = _age;
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        GenderScreen(data: widget.data),
+                                  ),
+                                );
+                              } else {
+                                setState(() {
+                                  _errorText = 'Tafadhali ingiza umri sahihi';
+                                });
+                              }
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue.shade700,
-                              padding:
-                              const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 16, horizontal: 32),
                               textStyle: const TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.bold),
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12), // Rounded edges
+                                borderRadius: BorderRadius.circular(12),
                               ),
                               shadowColor: Colors.black,
                               elevation: 5,
@@ -99,52 +139,4 @@ class AgeEntryPage extends StatelessWidget {
       ),
     );
   }
-}
-
-class AgeInputField extends StatefulWidget {
-  @override
-  _AgeInputFieldState createState() => _AgeInputFieldState();
-}
-
-class _AgeInputFieldState extends State<AgeInputField> {
-  final TextEditingController _controller = TextEditingController();
-  dynamic _errorText;
-
-  @override
-  void initState() {
-    super.initState();
-    _errorText = null; // Initialize error text as null
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      controller: _controller,
-      keyboardType: TextInputType.number,
-      decoration: InputDecoration(
-        border: const OutlineInputBorder(),
-        labelText: 'Umri',
-        hintText: 'Ingiza umri wako',
-        errorText: _errorText,
-      ),
-      onChanged: (value) {
-        setState(() {
-          _errorText =
-              (_validateAge(value) ? null : 'Tafadhali ingiza umri sahihi')!;
-        });
-      },
-    );
-  }
-
-  bool _validateAge(String value) {
-    if (value.isEmpty) return false;
-    final age = int.tryParse(value);
-    return age != null && age > 0;
-  }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: AgeEntryPage(),
-  ));
 }

@@ -1,39 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:kiganjani_afya_check/main.dart';
-import 'package:kiganjani_afya_check/views/pages/Recommendation.dart';
+import 'package:kiganjani_afya_check/views/pages/Assessment/reasonToLooseWeight.dart';
 
-void main() {
-  runApp(MyApp());
-}
+import '../../../backend/model/assessment.dart';
 
-class Targetedweight extends StatelessWidget {
+class TargetWeightScreen extends StatefulWidget {
+  final AssessmentData data;
+
+  const TargetWeightScreen({super.key, required this.data});
+
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Mchaguzi wa Uzito wa Lengo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: 'Roboto',
-      ),
-      home: TargetWeightPage(),
-      debugShowCheckedModeBanner: false, // Remove debug banner
-    );
-  }
+  // ignore: library_private_types_in_public_api
+  _TargetWeightScreenState createState() => _TargetWeightScreenState();
 }
 
-class TargetWeightPage extends StatefulWidget {
-  @override
-  _TargetWeightPageState createState() => _TargetWeightPageState();
-}
-
-class _TargetWeightPageState extends State<TargetWeightPage> {
-  double _weight = 70; // Default weight
+class _TargetWeightScreenState extends State<TargetWeightScreen> {
+  double _targetWeight = 50; // Default target weight
   final TextEditingController _weightController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _weightController.text = _weight.toStringAsFixed(1);
+    _targetWeight = widget.data.targetWeight ?? 70;
+    _weightController.text = _targetWeight.toStringAsFixed(1);
   }
 
   @override
@@ -44,8 +32,8 @@ class _TargetWeightPageState extends State<TargetWeightPage> {
 
   void _updateWeight(double value) {
     setState(() {
-      _weight = value;
-      _weightController.text = _weight.toStringAsFixed(1);
+      _targetWeight = value;
+      _weightController.text = _targetWeight.toStringAsFixed(1);
     });
   }
 
@@ -53,26 +41,31 @@ class _TargetWeightPageState extends State<TargetWeightPage> {
     final double? newWeight = double.tryParse(value);
     if (newWeight != null && newWeight >= 40 && newWeight <= 150) {
       setState(() {
-        _weight = newWeight;
-        // Update slider position and text field
-        _weightController.text = _weight.toStringAsFixed(1);
+        _targetWeight = newWeight;
+        _weightController.text = _targetWeight.toStringAsFixed(1);
       });
     }
   }
 
   void _submit() {
+    widget.data.targetWeight = _targetWeight;
+
     // Show Snackbar
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Uzito wa lengo wa ${_weight.toStringAsFixed(1)} kg umechaguliwa!'),
-        behavior: SnackBarBehavior.floating, // Ensures Snackbar is above other elements
+        content: Text(
+            'Uzito wa lengo wa ${_targetWeight.toStringAsFixed(1)} kg umechaguliwa!'),
+        behavior: SnackBarBehavior.floating,
       ),
     );
+
     // Navigate to the next page
     Future.delayed(Duration(seconds: 1), () {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Recommendation()),
+        MaterialPageRoute(
+          builder: (context) => ReasonToLooseWeight(data: widget.data),
+        ),
       );
     });
   }
@@ -80,7 +73,6 @@ class _TargetWeightPageState extends State<TargetWeightPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: const Text(
           'Chagua Uzito Wako wa Lengo',
@@ -119,7 +111,7 @@ class _TargetWeightPageState extends State<TargetWeightPage> {
                     ),
                     SizedBox(height: 20),
                     Text(
-                      '${_weight.toStringAsFixed(1)} kg',
+                      '${_targetWeight.toStringAsFixed(1)} kg',
                       style: const TextStyle(
                         fontSize: 36,
                         fontWeight: FontWeight.bold,
@@ -128,11 +120,11 @@ class _TargetWeightPageState extends State<TargetWeightPage> {
                     ),
                     const SizedBox(height: 20),
                     Slider(
-                      value: _weight,
+                      value: _targetWeight,
                       min: 40,
                       max: 150,
                       divisions: 110,
-                      label: '${_weight.toStringAsFixed(1)} kg',
+                      label: '${_targetWeight.toStringAsFixed(1)} kg',
                       onChanged: (value) {
                         _updateWeight(value);
                       },
@@ -143,7 +135,7 @@ class _TargetWeightPageState extends State<TargetWeightPage> {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Enter Weight (kg)',
+                        labelText: 'Ingiza Uzito wa Lengo (kg)',
                       ),
                       onChanged: _handleTextChange,
                     ),

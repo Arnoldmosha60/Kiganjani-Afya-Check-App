@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:kiganjani_afya_check/views/pages/Assessment/TargetedWeight.dart';
-import 'package:kiganjani_afya_check/views/pages/Dashboard/HomePage.dart';
 
+import '../../../backend/model/assessment.dart';
 
-class ActivityLevelSelectionPage extends StatelessWidget {
+class ActivityLevelScreen extends StatefulWidget {
+  final AssessmentData data;
+
+  const ActivityLevelScreen({super.key, required this.data});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _ActivityLevelScreenState createState() => _ActivityLevelScreenState();
+}
+
+class _ActivityLevelScreenState extends State<ActivityLevelScreen> {
+  String? _activityLevel;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +30,10 @@ class ActivityLevelSelectionPage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
+        title: const Text(
+          'Select Your Activity Level',
+          style: TextStyle(color: Colors.black),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -25,51 +41,55 @@ class ActivityLevelSelectionPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 20),
-            const Center(
-              child: Text(
-                'Select Your Activity Level',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
             Expanded(
               child: ListView(
                 children: [
-                  _buildActivityLevelCard(
+                  _buildActivityLevelOption(
                     context,
-                    'Kukaa tu',
+                    'Low',
                     'assets/images/customer-service.png',
                     'Mazoezi kidogo au hakuna kabisa.',
                   ),
-                  _buildActivityLevelCard(
+                  _buildActivityLevelOption(
                     context,
-                    'Mazoezi Kidogo.',
-                    'assets/images/customer-service.png',
-                    'Mazoezi mepesi/michezo siku 1-3 kwa wiki..',
-                  ),
-                  _buildActivityLevelCard(
-                    context,
-                    'Mazoezi ya Kati.',
+                    'Moderate',
                     'assets/images/customer-service.png',
                     'Mazoezi ya kati/michezo siku 3-5 kwa wiki.',
                   ),
-                  _buildActivityLevelCard(
+                  _buildActivityLevelOption(
                     context,
-                    'Mazoezi Mengi.',
+                    'High',
                     'assets/images/customer-service.png',
                     'Mazoezi makali/michezo siku 6-7 kwa wiki.',
                   ),
-                  _buildActivityLevelCard(
-                    context,
-                    'Mwenye Mazoezi Zaidi',
-                    'assets/images/customer-service.png',
-                    'Mazoezi makali sana/michezo na kazi za kimwili.',
-                  ),
                 ],
+              ),
+            ),
+            Center(
+              // Added Center widget to center the button
+              child: ElevatedButton(
+                onPressed: () {
+                  if (_activityLevel != null) {
+                    widget.data.activityLevel = _activityLevel!;
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            TargetWeightScreen(data: widget.data),
+                      ),
+                    );
+                  }
+                },
+                child: const Text('Next'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                  textStyle: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
           ],
@@ -78,18 +98,13 @@ class ActivityLevelSelectionPage extends StatelessWidget {
     );
   }
 
-  Widget _buildActivityLevelCard(
-      BuildContext context, String title, String imagePath, String description) {
+  Widget _buildActivityLevelOption(BuildContext context, String title,
+      String imagePath, String description) {
     return GestureDetector(
       onTap: () {
-        // Handle card tap, e.g., navigate to another page or show a confirmation
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Targetedweight(),
-
-          ),
-        );
+        setState(() {
+          _activityLevel = title;
+        });
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 10),
@@ -123,10 +138,12 @@ class ActivityLevelSelectionPage extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: _activityLevel == title
+                            ? Colors.blue
+                            : Colors.black,
                       ),
                     ),
                     const SizedBox(height: 5),
@@ -141,35 +158,14 @@ class ActivityLevelSelectionPage extends StatelessWidget {
                 ),
               ),
             ),
+            if (_activityLevel == title)
+              const Padding(
+                padding: EdgeInsets.only(right: 16.0),
+                child: Icon(Icons.check, color: Colors.blue),
+              ),
           ],
         ),
       ),
     );
   }
 }
-
-
-class SelectedActivityPage extends StatelessWidget {
-  final String title;
-
-  SelectedActivityPage({required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Selected Activity Level'),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text(
-          'You selected: $title',
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      ),
-    );
-  }
-}
-
