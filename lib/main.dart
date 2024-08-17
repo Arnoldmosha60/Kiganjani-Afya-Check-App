@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kiganjani_afya_check/views/pages/Assessment/gender.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/HomePage.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/Startworkout.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/chartbar.dart';
@@ -6,6 +7,7 @@ import 'package:kiganjani_afya_check/views/pages/Dashboard/progress2.dart';
 import 'package:kiganjani_afya_check/views/pages/Profile/profile.dart';
 import 'package:kiganjani_afya_check/views/pages/Profile/user_profile.dart';
 import 'package:kiganjani_afya_check/views/pages/Settings/settings.dart';
+import 'package:kiganjani_afya_check/views/pages/distance.dart';
 import 'package:kiganjani_afya_check/views/splash_screen.dart';
 
 void main() {
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SplashScreen(),
+      home: DistanceTracker(),
     );
   }
 }

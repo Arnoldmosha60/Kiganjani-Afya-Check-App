@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kiganjani_afya_check/views/pages/Dashboard/Startworkout.dart';
+import 'package:kiganjani_afya_check/views/pages/Dashboard/program.dart';
 import 'package:video_player/video_player.dart';
 
 class MazoeziPage extends StatefulWidget {
@@ -114,6 +116,10 @@ class _MazoeziPageState extends State<MazoeziPage> {
                 ElevatedButton(
                   onPressed: () {
                     // Navigate to detailed benefits page or start exercise page
+                      Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MagicWeightLossProgram()),
+                  );
                   },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(vertical: 15),

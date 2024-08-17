@@ -65,7 +65,7 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.blueAccent,
         elevation: 0,
-          actions: [
+        actions: [
           IconButton(
             icon: Icon(Icons.notifications, color: Colors.black),
             onPressed: () {},
@@ -73,7 +73,7 @@ class HomePage extends StatelessWidget {
         ],
       ),
       drawer: AppDrawer(), // Custom Drawer
-      body: Padding(
+      body: SingleChildScrollView( // Make the content scrollable
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -232,7 +232,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            Spacer(), // Pushes the buttons to the bottom
+            const SizedBox(height: 30),
             // Impressive Animated Buttons at the Bottom
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -340,92 +340,68 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: Column(
+      child: ListView(
+        padding: EdgeInsets.zero,
         children: [
-          const DrawerHeader(
+          DrawerHeader(
             decoration: BoxDecoration(
               color: Colors.blueAccent,
-              image: DecorationImage(
-                image: AssetImage('assets/images/drawer_bg.jpg'),
-                fit: BoxFit.cover,
-              ),
             ),
-            child: Align(
-              alignment: Alignment.bottomLeft,
-              child: Text(
-                'Dr Silas',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+            child: const Text(
+              'Menu',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
               ),
             ),
           ),
-                    Expanded(
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                ListTile(
-                  leading: Icon(Icons.home),
-                  title: Text('Home'),
-                  onTap: () {
-                    Navigator.pop(context); // Close the drawer
-                    // Navigate to Home page
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('Profile'),
-                  onTap: () {
-                    Navigator.pop(context); 
-                       Navigator.pop(context); 
-                     Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => profile()),
-                  );
-                    // Close the drawer
-                    // Navigate to Profile page
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.settings),
-                  title: Text('Settings'),
-                  onTap: () {
-                    Navigator.pop(context); 
-                     Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const SettingsPage()),
-                  ); // Close the drawer
-                    // Navigate to Settings page
-                  },
-                ),
-                Divider(),
-                ListTile(
-                  leading: Icon(Icons.help),
-                  title: Text('Help & Feedback'),
-                  onTap: () {
-                    Navigator.pop(context); // Close the drawer
-                    // Navigate to Help & Feedback page
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.logout),
-                  title: Text('Logout'),
-                  onTap: () {
-                    Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()),
-                  ); // Close the drawer
-                    // Perform logout operation
-                  },
-                ),
-              ],
-            ),
+          ListTile(
+            leading: Icon(Icons.home),
+            title: const Text('Home'),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.person),
+            title: const Text('Profile'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => profile()),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: const Text('Settings'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SettingsPage()),
+              );
+            },
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.help),
+            title: const Text('Help & Feedback'),
+            onTap: () {
+              // Handle Help & Feedback action
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.logout),
+            title: const Text('Logout'),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => LoginPage()),
+              );
+            },
           ),
         ],
       ),
     );
   }
 }
-

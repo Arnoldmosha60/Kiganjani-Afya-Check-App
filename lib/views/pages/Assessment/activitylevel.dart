@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:kiganjani_afya_check/views/pages/Assessment/TargetedWeight.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/HomePage.dart';
 
-
 class ActivityLevelSelectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
@@ -19,75 +20,139 @@ class ActivityLevelSelectionPage extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 20),
-            const Center(
-              child: Text(
-                'Select Your Activity Level',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+              Center(
+                child: Column(
+                  children: [
+                    // Custom Progress Bar with Percentage
+                    Stack(
+                      children: [
+                        Container(
+                          height: 25,
+                          width: screenWidth * 0.8,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade300,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        Container(
+                          height: 25,
+                          width: screenWidth * 0.8 * 0.75, // 75% progress
+                          decoration: BoxDecoration(
+                            color: Colors.blue.shade700,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          alignment: Alignment.center,
+                          child: const Text(
+                            '75%',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    const Text(
+                      'Select Your Activity Level',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            Expanded(
-              child: ListView(
-                children: [
-                  _buildActivityLevelCard(
-                    context,
-                    'Kukaa tu',
-                    'assets/images/customer-service.png',
-                    'Mazoezi kidogo au hakuna kabisa.',
-                  ),
-                  _buildActivityLevelCard(
-                    context,
-                    'Mazoezi Kidogo.',
-                    'assets/images/customer-service.png',
-                    'Mazoezi mepesi/michezo siku 1-3 kwa wiki..',
-                  ),
-                  _buildActivityLevelCard(
-                    context,
-                    'Mazoezi ya Kati.',
-                    'assets/images/customer-service.png',
-                    'Mazoezi ya kati/michezo siku 3-5 kwa wiki.',
-                  ),
-                  _buildActivityLevelCard(
-                    context,
-                    'Mazoezi Mengi.',
-                    'assets/images/customer-service.png',
-                    'Mazoezi makali/michezo siku 6-7 kwa wiki.',
-                  ),
-                  _buildActivityLevelCard(
-                    context,
-                    'Mwenye Mazoezi Zaidi',
-                    'assets/images/customer-service.png',
-                    'Mazoezi makali sana/michezo na kazi za kimwili.',
-                  ),
-                ],
+              const SizedBox(height: 20),
+              Expanded(
+                child: ListView(
+                  children: [
+                    _buildActivityLevelCard(
+                      context,
+                      'Kukaa tu',
+                      'assets/images/customer-service.png',
+                      'Mazoezi kidogo au hakuna kabisa.',
+                    ),
+                    _buildActivityLevelCard(
+                      context,
+                      'Mazoezi Kidogo',
+                      'assets/images/customer-service.png',
+                      'Mazoezi mepesi/michezo siku 1-3 kwa wiki.',
+                    ),
+                    _buildActivityLevelCard(
+                      context,
+                      'Mazoezi ya Kati',
+                      'assets/images/customer-service.png',
+                      'Mazoezi ya kati/michezo siku 3-5 kwa wiki.',
+                    ),
+                    _buildActivityLevelCard(
+                      context,
+                      'Mazoezi Mengi',
+                      'assets/images/customer-service.png',
+                      'Mazoezi makali/michezo siku 6-7 kwa wiki.',
+                    ),
+                    _buildActivityLevelCard(
+                      context,
+                      'Mwenye Mazoezi Zaidi',
+                      'assets/images/customer-service.png',
+                      'Mazoezi makali sana/michezo na kazi za kimwili.',
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Targetedweight(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue.shade700,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  textStyle: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  minimumSize: Size(screenWidth * 0.8, 50),
+                ),
+                child: const Text('NEXT'),
+              ),
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget _buildActivityLevelCard(
-      BuildContext context, String title, String imagePath, String description) {
+    BuildContext context, 
+    String title, 
+    String imagePath, 
+    String description
+  ) {
     return GestureDetector(
       onTap: () {
-        // Handle card tap, e.g., navigate to another page or show a confirmation
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => Targetedweight(),
-
           ),
         );
       },
@@ -148,7 +213,6 @@ class ActivityLevelSelectionPage extends StatelessWidget {
   }
 }
 
-
 class SelectedActivityPage extends StatelessWidget {
   final String title;
 
@@ -173,3 +237,8 @@ class SelectedActivityPage extends StatelessWidget {
   }
 }
 
+void main() {
+  runApp(MaterialApp(
+    home: ActivityLevelSelectionPage(),
+  ));
+}

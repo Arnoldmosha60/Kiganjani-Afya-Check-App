@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kiganjani_afya_check/main.dart';
 import 'package:kiganjani_afya_check/views/pages/Recommendation.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(Targetedweight());
 }
 
 class Targetedweight extends StatelessWidget {
@@ -16,7 +15,7 @@ class Targetedweight extends StatelessWidget {
         fontFamily: 'Roboto',
       ),
       home: TargetWeightPage(),
-      debugShowCheckedModeBanner: false, // Remove debug banner
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -28,6 +27,7 @@ class TargetWeightPage extends StatefulWidget {
 
 class _TargetWeightPageState extends State<TargetWeightPage> {
   double _weight = 70; // Default weight
+  double _progress = 0.7; // Progress value (for example purposes)
   final TextEditingController _weightController = TextEditingController();
 
   @override
@@ -65,7 +65,7 @@ class _TargetWeightPageState extends State<TargetWeightPage> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text('Uzito wa lengo wa ${_weight.toStringAsFixed(1)} kg umechaguliwa!'),
-        behavior: SnackBarBehavior.floating, // Ensures Snackbar is above other elements
+        behavior: SnackBarBehavior.floating,
       ),
     );
     // Navigate to the next page
@@ -98,72 +98,89 @@ class _TargetWeightPageState extends State<TargetWeightPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Target weight card
-            Card(
-              elevation: 12,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
+            // Progress Bar with percentage
+            LinearProgressIndicator(
+              value: _progress,
+              backgroundColor: Colors.grey[300],
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              '${(_progress * 100).toInt()}% Completed',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.blue,
               ),
-              margin: const EdgeInsets.only(bottom: 20),
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text(
-                      'Uzito Wako wa Lengo',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+            ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: Center(
+                child: Card(
+                  elevation: 12,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Text(
+                          'Uzito Wako wa Lengo',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          '${_weight.toStringAsFixed(1)} kg',
+                          style: const TextStyle(
+                            fontSize: 36,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Slider(
+                          value: _weight,
+                          min: 40,
+                          max: 150,
+                          divisions: 110,
+                          label: '${_weight.toStringAsFixed(1)} kg',
+                          onChanged: (value) {
+                            _updateWeight(value);
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        TextField(
+                          controller: _weightController,
+                          keyboardType: TextInputType.number,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Enter Weight (kg)',
+                          ),
+                          onChanged: _handleTextChange,
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 20),
-                    Text(
-                      '${_weight.toStringAsFixed(1)} kg',
-                      style: const TextStyle(
-                        fontSize: 36,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue,
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    Slider(
-                      value: _weight,
-                      min: 40,
-                      max: 150,
-                      divisions: 110,
-                      label: '${_weight.toStringAsFixed(1)} kg',
-                      onChanged: (value) {
-                        _updateWeight(value);
-                      },
-                    ),
-                    const SizedBox(height: 20),
-                    TextField(
-                      controller: _weightController,
-                      keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Enter Weight (kg)',
-                      ),
-                      onChanged: _handleTextChange,
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ),
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        child: Container(
-          padding: const EdgeInsets.all(8.0),
-          child: FloatingActionButton.extended(
-            onPressed: _submit,
-            label: const Text('Tuma'),
-            icon: const Icon(Icons.check),
-            backgroundColor: Colors.blueAccent,
-            foregroundColor: Colors.white,
-          ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: FloatingActionButton.extended(
+          onPressed: _submit,
+          label: const Text('Tuma'),
+          icon: const Icon(Icons.check),
+          backgroundColor: Colors.blueAccent,
+          foregroundColor: Colors.white,
         ),
       ),
     );
