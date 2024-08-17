@@ -1,7 +1,71 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:kiganjani_afya_check/views/pages/Assessment/activitylevel.dart';
+import 'package:http/http.dart' as http;
+import 'package:kiganjani_afya_check/backend/model/assessment.dart';
+import 'package:kiganjani_afya_check/views/pages/Dashboard/HomePage.dart';
 
-class BodyTypeSelectionPage extends StatelessWidget {
+class BodySizeScreen extends StatelessWidget {
+  final AssessmentData data;
+
+  const BodySizeScreen({super.key, required this.data});
+
+  Future<void> _submitData(BuildContext context, String bodyShape) async {
+    data.bodyShape = bodyShape;
+
+    // Replace with your API endpoint
+    final url = Uri.parse('http://192.168.1.158:8080/assessment/save');
+
+    // Create a map of the data
+    final Map<String, dynamic> dataMap = {
+      'age': data.age,
+      'gender': data.gender,
+      'height': data.height,
+      'weight': data.weight,
+      'activityLevel': data.activityLevel,
+      'reasonToLoseWeight': data.reasonToLoseWeight,
+      'bodyShape': data.bodyShape,
+      'targetWeight': data.targetWeight,
+    };
+
+    // Convert the map to JSON
+    final jsonData = json.encode(dataMap);
+
+    final response = await http.post(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonData,
+    );
+
+    if (response.statusCode == 200) {
+      // Handle success
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Data submitted successfully!')),
+      );
+
+      // Clear the data fields after successful submission
+      data.age = null;
+      data.gender = null;
+      data.height = null;
+      data.weight = null;
+      data.activityLevel = null;
+      data.reasonToLoseWeight = null;
+      data.bodyShape = null;
+      data.targetWeight = null;
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
+    } else {
+      // Handle error
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to submit data')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -18,6 +82,10 @@ class BodyTypeSelectionPage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
+<<<<<<< HEAD
+=======
+        actions: const [],
+>>>>>>> c80490cc9704bd8925016123ecf6255fa27a8dcb
       ),
       body: SafeArea(
         child: Padding(
@@ -71,6 +139,7 @@ class BodyTypeSelectionPage extends StatelessWidget {
                   ],
                 ),
               ),
+<<<<<<< HEAD
               const SizedBox(height: 20),
               Expanded(
                 child: ListView(
@@ -92,6 +161,19 @@ class BodyTypeSelectionPage extends StatelessWidget {
                     ),
                   ],
                 ),
+=======
+            ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: ListView(
+                children: [
+                  _buildBodyTypeCard(
+                      context, 'Kawaida', 'assets/images/normal1.png'),
+                  _buildBodyTypeCard(
+                      context, 'Mlegevu', 'assets/images/curvy.png'),
+                  _buildBodyTypeCard(context, 'Zaidi', 'assets/images/big.png'),
+                ],
+>>>>>>> c80490cc9704bd8925016123ecf6255fa27a8dcb
               ),
               const SizedBox(height: 20),
               ElevatedButton(
@@ -127,10 +209,14 @@ class BodyTypeSelectionPage extends StatelessWidget {
       BuildContext context, String title, String imagePath) {
     return GestureDetector(
       onTap: () {
+<<<<<<< HEAD
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => ActivityLevelSelectionPage()),
         );
+=======
+        _submitData(context, title);
+>>>>>>> c80490cc9704bd8925016123ecf6255fa27a8dcb
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 10),
@@ -172,9 +258,12 @@ class BodyTypeSelectionPage extends StatelessWidget {
     );
   }
 }
+<<<<<<< HEAD
 
 void main() {
   runApp(MaterialApp(
     home: BodyTypeSelectionPage(),
   ));
 }
+=======
+>>>>>>> c80490cc9704bd8925016123ecf6255fa27a8dcb

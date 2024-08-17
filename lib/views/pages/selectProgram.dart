@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:kiganjani_afya_check/main.dart';
-import 'package:kiganjani_afya_check/views/pages/Assessment/gender.dart';
+import 'package:kiganjani_afya_check/views/pages/Assessment/age.dart';
 
-void main() {
-  runApp(MyApp());
-}
+import '../../backend/model/assessment.dart';
+
 
 class Selectprogram extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -54,13 +53,17 @@ class SelectProgram extends StatelessWidget {
                     icon: Icons.flash_on,
                     color: Colors.green.shade700,
                     onTap: () {
-                      // Navigate to the first option page
+                      // Create an instance of AssessmentData
+                      AssessmentData assessmentData = AssessmentData();
+
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => AgeGroupPage()),
+                        MaterialPageRoute(
+                          builder: (context) => AgeScreen(data: assessmentData),
+                        ),
                       );
-                    },
-                  ),
+                    },),
+
                   const SizedBox(height: 20),
                   OptionCard(
                     title: 'Tuzo la Mpunguza Uzito Bora Tanzania',

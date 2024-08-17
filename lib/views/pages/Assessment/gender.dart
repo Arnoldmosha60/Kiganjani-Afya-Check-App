@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:kiganjani_afya_check/views/pages/Assessment/age.dart';
+import 'package:kiganjani_afya_check/views/pages/Assessment/height.dart';
 
-class AgeGroupPage extends StatefulWidget {
+import '../../../backend/model/assessment.dart';
+class GenderScreen extends StatefulWidget {
+
+  final AssessmentData data;
+
+   const GenderScreen({super.key, required this.data});
+
   @override
-  _AgeGroupPageState createState() => _AgeGroupPageState();
+  // ignore: library_private_types_in_public_api
+  _GenderGroupPageState createState() => _GenderGroupPageState();
 }
 
-class _AgeGroupPageState extends State<AgeGroupPage> {
-  String _selectedGender = '';
+class _GenderGroupPageState extends State<GenderScreen> {
+  String? _gender;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +42,7 @@ class _AgeGroupPageState extends State<AgeGroupPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
+<<<<<<< HEAD
               const SizedBox(height: 10),
               // Progress bar
               Column(
@@ -45,6 +53,16 @@ class _AgeGroupPageState extends State<AgeGroupPage> {
                       color: Colors.blueAccent,
                       fontWeight: FontWeight.bold,
                     ),
+=======
+              const SizedBox(height: 20),
+              Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Colors.blueAccent, Colors.lightBlueAccent],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+>>>>>>> c80490cc9704bd8925016123ecf6255fa27a8dcb
                   ),
                   SizedBox(height: 5),
                   LinearProgressIndicator(
@@ -62,6 +80,7 @@ class _AgeGroupPageState extends State<AgeGroupPage> {
                   fontSize: screenWidth * 0.07, // Responsive text size
                   fontWeight: FontWeight.bold,
                 ),
+<<<<<<< HEAD
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
@@ -97,7 +116,78 @@ class _AgeGroupPageState extends State<AgeGroupPage> {
                           child: Image.asset(
                             'assets/images/male.png', // Replace with your asset image
                             height: screenHeight * 0.25, // Responsive image height
+=======
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: <Widget>[
+                      const Text(
+                        'CHAGUA JINSIA YAKO',
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 20),
+                      Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        elevation: 6,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            children: <Widget>[
+                              ListTile(
+                                title: const Text('Mwanaume',
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                leading: Radio<String>(
+                                  value: 'male',
+                                  groupValue: _gender,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _gender = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                              ListTile(
+                                title: const Text('Mwanamke',
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                leading: Radio<String>(
+                                  value: 'female',
+                                  groupValue: _gender,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _gender = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                             ElevatedButton(
+                                onPressed: () {
+                                  if (_gender != null) {
+                                    widget.data.gender = _gender;
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => WeightScreen(data: widget.data),
+                                      ),
+                                    );
+                                  }
+                                },
+                                child: Text('Next'),
+           ),
+                              
+                            ],
+                            
+>>>>>>> c80490cc9704bd8925016123ecf6255fa27a8dcb
                           ),
+                          
                         ),
                         const SizedBox(height: 10),
                         Text(
@@ -200,8 +290,4 @@ class _AgeGroupPageState extends State<AgeGroupPage> {
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: AgeGroupPage(),
-  ));
-}
+

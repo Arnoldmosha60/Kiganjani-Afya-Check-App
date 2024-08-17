@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kiganjani_afya_check/views/pages/Dashboard/HomePage.dart';
 import 'package:kiganjani_afya_check/views/pages/selectProgram.dart';
 
 class StartPage extends StatefulWidget {
@@ -82,10 +83,15 @@ class _StartPageState extends State<StartPage> {
                   ElevatedButton(
                     onPressed: _isAccepted
                         ? () {
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) => SelectProgram()),
+                            // );
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => SelectProgram()),
+                                  builder: (context) => HomePage()),
                             );
                           }
                         : null, // Disable the button if the terms are not accepted
