@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:kiganjani_afya_check/views/pages/Dashboard/progress2.dart';
 
 class MaendeleoPage extends StatelessWidget {
   @override
@@ -121,6 +122,10 @@ class MaendeleoPage extends StatelessWidget {
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
+                     Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HealthDashboardPage()),
+                  ); // Close the drawer
                     // Add action for detailed progress tracking
                   },
                   style: ElevatedButton.styleFrom(

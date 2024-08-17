@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/HomePage.dart';
+import 'package:kiganjani_afya_check/views/pages/Dashboard/Startworkout.dart';
 
 void main() {
   runApp(MagicWeightLossProgram());
@@ -200,7 +201,7 @@ class ResultCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Matokeo ya Kalori',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
@@ -214,9 +215,9 @@ class ResultCard extends StatelessWidget {
               height: 150,
               width: double.infinity,
               color: Colors.purple.withOpacity(0.1),
-              child: Center(
+              child: const Center(
                 child: Text(
-                  'Mchoro wa Kalori Zisizochomwa',
+                  'Kiwango cha Karoli kilichoongezeka',
                   style: TextStyle(color: Colors.blueAccent),
                 ),
               ),
@@ -326,8 +327,8 @@ class ExerciseRecommendationSection extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
+        child: const Padding(
+          padding: EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -384,7 +385,7 @@ class ExerciseRecommendationField extends StatelessWidget {
         children: [
           Text(
             exerciseType,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Colors.blueAccent,
@@ -396,6 +397,28 @@ class ExerciseRecommendationField extends StatelessWidget {
           Text('Muda: $time'),
           Text('Kalori: $calories'),
           const SizedBox(height: 10),
+          ElevatedButton(
+            onPressed: () {
+                Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => WorkoutGuideApp()),
+                            );
+              // Handle button press action here
+
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Starting $exerciseType exercise!'),
+                ),
+              );
+            },
+            child: Text('Anza'),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blueAccent,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              textStyle: const TextStyle(fontSize: 16),
+            ),
+          ),
         ],
       ),
     );

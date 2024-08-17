@@ -7,6 +7,9 @@ import 'package:kiganjani_afya_check/views/pages/Dashboard/fasting.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/introduction.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/program.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/workout.dart';
+import 'package:kiganjani_afya_check/views/pages/Profile/finalprofile.dart';
+import 'package:kiganjani_afya_check/views/pages/Profile/user_profile.dart';
+import 'package:kiganjani_afya_check/views/pages/Settings/settings.dart';
 import 'package:kiganjani_afya_check/views/pages/selectProgram.dart';
 
 void main() {
@@ -62,6 +65,12 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.blueAccent,
         elevation: 0,
+          actions: [
+          IconButton(
+            icon: Icon(Icons.notifications, color: Colors.black),
+            onPressed: () {},
+          ),
+        ],
       ),
       drawer: AppDrawer(), // Custom Drawer
       body: Padding(
@@ -369,7 +378,13 @@ class AppDrawer extends StatelessWidget {
                   leading: Icon(Icons.person),
                   title: Text('Profile'),
                   onTap: () {
-                    Navigator.pop(context); // Close the drawer
+                    Navigator.pop(context); 
+                       Navigator.pop(context); 
+                     Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => profile()),
+                  );
+                    // Close the drawer
                     // Navigate to Profile page
                   },
                 ),
@@ -377,7 +392,11 @@ class AppDrawer extends StatelessWidget {
                   leading: Icon(Icons.settings),
                   title: Text('Settings'),
                   onTap: () {
-                    Navigator.pop(context); // Close the drawer
+                    Navigator.pop(context); 
+                     Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SettingsPage()),
+                  ); // Close the drawer
                     // Navigate to Settings page
                   },
                 ),
