@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart'; // Import for social media icons
+import 'package:flutter/material.dart';// Import for social media icons
 
 class Logo extends StatelessWidget {
   final IconData icon;
