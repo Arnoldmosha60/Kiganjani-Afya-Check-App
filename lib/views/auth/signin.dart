@@ -10,7 +10,6 @@ import 'package:http/http.dart' as http;
 import '../../theme/theme.dart';
 import '../../widget/custom_scaffold.dart';
 import '../../widget/logo.dart';
-import '../pages/Dashboard/HomePage.dart';
 import '../pages/startup.dart';
 
 class LoginPage extends StatefulWidget {

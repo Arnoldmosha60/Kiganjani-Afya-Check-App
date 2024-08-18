@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:kiganjani_afya_check/views/auth/signin.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/Nutrition.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/Progress.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/fasting.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/introduction.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/program.dart';
 import 'package:kiganjani_afya_check/views/pages/Dashboard/workout.dart';
+import 'package:kiganjani_afya_check/views/pages/Profile/finalprofile.dart';
+import 'package:kiganjani_afya_check/views/pages/Profile/user_profile.dart';
+import 'package:kiganjani_afya_check/views/pages/Settings/settings.dart';
 import 'package:kiganjani_afya_check/views/pages/selectProgram.dart';
 
-void main() {
-  runApp(MyApp());
-}
+import '../../auth/signin.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -53,18 +53,32 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Kiganjani Afya Check',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+    final screenSize = MediaQuery.of(context).size;
+
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Kiganjani Afya Check',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.blueAccent,
+          elevation: 0,
         ),
+<<<<<<< HEAD
         centerTitle: true,
         backgroundColor: Colors.blueAccent,
         elevation: 0,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.notifications, color: Colors.black),
+            onPressed: () {},
+          ),
+        ],
       ),
       drawer: AppDrawer(), // Custom Drawer
-      body: Padding(
+      body: SingleChildScrollView( // Make the content scrollable
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -166,64 +180,71 @@ class HomePage extends StatelessWidget {
             ElasticIn(
               child: Card(
                 elevation: 12,
+=======
+        drawer: AppDrawer(),
+        body: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(
+            horizontal: screenSize.width * 0.05,
+            vertical: screenSize.height * 0.02,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              // Welcome Card
+              Card(
+                elevation: 10,
+>>>>>>> c80490cc9704bd8925016123ecf6255fa27a8dcb
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(15),
                 ),
-                color: Colors.blueAccent,
                 child: Padding(
-                  padding: const EdgeInsets.all(30.0),
+                  padding: EdgeInsets.all(screenSize.width * 0.05),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(
-                        Icons.show_chart,
-                        size: 60,
-                        color: Colors.white,
-                      ),
-                      SizedBox(height: 10),
                       const Text(
-                        'Maendeleo yako',
+                        'Karibu kwenye Safari yako ya Afya',
                         style: TextStyle(
-                          fontSize: 22,
+                          fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
                         ),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: screenSize.height * 0.01),
                       const Text(
-                        'Fahamu maendeleo, jitihada na matokeo yako',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white70,
-                        ),
+                        'Tuanzishe mabadiliko yako leo!',
+                        style: TextStyle(fontSize: 16),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: screenSize.height * 0.02),
                       ElevatedButton(
                         onPressed: () {
-                          _navigateToPage(context, MaendeleoPage());
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => UtanguliziPage()),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 40,
-                            vertical: 15,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: screenSize.width * 0.1,
+                            vertical: screenSize.height * 0.015,
                           ),
-                          backgroundColor: Colors.orange,
+                          backgroundColor: Colors.blueAccent,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
                         ),
                         child: const Text(
-                          'Jifunze Zaidi',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
+                          'Utangulizi',
+                          style: TextStyle(fontSize: 18),
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
+<<<<<<< HEAD
             ),
-            Spacer(), // Pushes the buttons to the bottom
+            const SizedBox(height: 30),
             // Impressive Animated Buttons at the Bottom
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -242,38 +263,171 @@ class HomePage extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
+=======
+              SizedBox(height: screenSize.height * 0.03),
+              // Additional Features - Cards Positioned Higher
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Flexible(
+                    child: FeatureCard(
+                      icon: Icons.fitness_center,
+                      title: 'Mazoezi',
+                      color: Colors.green,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MazoeziPage()),
+                        );
+                      },
+>>>>>>> c80490cc9704bd8925016123ecf6255fa27a8dcb
                     ),
-                    child: const Text(
-                      'Huduma',
-                      style: TextStyle(fontSize: 16),
+                  ),
+                  Flexible(
+                    child: FeatureCard(
+                      icon: Icons.food_bank,
+                      title: 'Lishe',
+                      color: Colors.orange,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LisheBoraPage()),
+                        );
+                      },
+                    ),
+                  ),
+                  Flexible(
+                    child: FeatureCard(
+                      icon: Icons.star,
+                      title: 'Kufunga',
+                      color: Colors.purple,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FastingPage()),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: screenSize.height * 0.02),
+              // Big Central Card
+              ElasticIn(
+                child: Card(
+                  elevation: 12,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  color: Colors.blueAccent,
+                  child: Padding(
+                    padding: EdgeInsets.all(screenSize.width * 0.08),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(
+                          Icons.show_chart,
+                          size: 60,
+                          color: Colors.white,
+                        ),
+                        SizedBox(height: screenSize.height * 0.01),
+                        const Text(
+                          'Maendeleo yako',
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(height: screenSize.height * 0.01),
+                        const Text(
+                          'Fahamu maendeleo, jitihada na matokeo yako',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white70,
+                          ),
+                        ),
+                        SizedBox(height: screenSize.height * 0.02),
+                        ElevatedButton(
+                          onPressed: () {
+                            _navigateToPage(context, MaendeleoPage());
+                          },
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: screenSize.width * 0.1,
+                              vertical: screenSize.height * 0.015,
+                            ),
+                            backgroundColor: Colors.orange,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                          child: const Text(
+                            'Jifunze Zaidi',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                BounceInUp(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      _navigateToPage(context, MagicWeightLossProgram());
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 30,
-                        vertical: 15,
+              ),
+              SizedBox(height: screenSize.height * 0.02),
+              // Impressive Animated Buttons at the Bottom
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  BounceInUp(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        _navigateToPage(context, Selectprogram());
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: screenSize.width * 0.08,
+                          vertical: screenSize.height * 0.015,
+                        ),
+                        backgroundColor: Colors.blueAccent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
                       ),
-                      backgroundColor: Colors.blueAccent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
+                      child: const Text(
+                        'Huduma',
+                        style: TextStyle(fontSize: 16),
                       ),
-                    ),
-                    child: const Text(
-                      'Endelea na Mpango',
-                      style: TextStyle(fontSize: 16),
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 30), // Add some space at the bottom
-          ],
+                  BounceInUp(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        _navigateToPage(context, MagicWeightLossProgram());
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: screenSize.width * 0.08,
+                          vertical: screenSize.height * 0.015,
+                        ),
+                        backgroundColor: Colors.blueAccent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                      child: const Text(
+                        'Endelea na Mpango',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: screenSize.height * 0.03),
+            ],
+          ),
         ),
       ),
     );
@@ -295,6 +449,8 @@ class FeatureCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(15),
@@ -303,15 +459,15 @@ class FeatureCard extends StatelessWidget {
           color: color,
           borderRadius: BorderRadius.circular(15),
         ),
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(screenSize.width * 0.05),
         child: Column(
           children: [
             Icon(
               icon,
-              size: 40,
+              size: screenSize.width * 0.1,
               color: Colors.white,
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: screenSize.height * 0.01),
             Text(
               title,
               style: const TextStyle(
@@ -331,29 +487,68 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: Column(
+      child: ListView(
+        padding: EdgeInsets.zero,
         children: [
-          const DrawerHeader(
+          DrawerHeader(
             decoration: BoxDecoration(
               color: Colors.blueAccent,
-              image: DecorationImage(
-                image: AssetImage('assets/images/drawer_bg.jpg'),
-                fit: BoxFit.cover,
-              ),
             ),
-            child: Align(
-              alignment: Alignment.bottomLeft,
-              child: Text(
-                'Dr Silas',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+            child: const Text(
+              'Menu',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
               ),
             ),
           ),
-                    Expanded(
+<<<<<<< HEAD
+          ListTile(
+            leading: Icon(Icons.home),
+            title: const Text('Home'),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.person),
+            title: const Text('Profile'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => profile()),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: const Text('Settings'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SettingsPage()),
+              );
+            },
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.help),
+            title: const Text('Help & Feedback'),
+            onTap: () {
+              // Handle Help & Feedback action
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.logout),
+            title: const Text('Logout'),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => LoginPage()),
+              );
+            },
+=======
+          Expanded(
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
@@ -395,18 +590,19 @@ class AppDrawer extends StatelessWidget {
                   title: Text('Logout'),
                   onTap: () {
                     Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()),
-                  ); // Close the drawer
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginPage()),
+                    ); // Close the drawer
                     // Perform logout operation
                   },
                 ),
               ],
             ),
+>>>>>>> c80490cc9704bd8925016123ecf6255fa27a8dcb
           ),
         ],
       ),
     );
   }
 }
-

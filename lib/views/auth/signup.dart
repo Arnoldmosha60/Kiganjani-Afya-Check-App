@@ -51,7 +51,7 @@ class _SignupPageState extends State<SignupPage> {
         // Navigate to StartPage
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => StartPage()),
+          MaterialPageRoute(builder: (context) => LoginPage()),
         );
       } else if (response.statusCode == 400) {
         // Show warning AnimatedSnackBar if email already exists

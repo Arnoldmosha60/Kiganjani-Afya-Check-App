@@ -6,6 +6,8 @@ import 'package:kiganjani_afya_check/views/pages/Dashboard/HomePage.dart';
 class ActivityLevelSelectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
@@ -18,6 +20,10 @@ class ActivityLevelSelectionPage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
+        title: const Text(
+          'Select Your Activity Level',
+          style: TextStyle(color: Colors.black),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -86,7 +92,7 @@ class ActivityLevelSelectionPage extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Targetedweight(),
+            builder: (context) => TargetWeightPage(),
 
           ),
         );
@@ -123,10 +129,12 @@ class ActivityLevelSelectionPage extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: _activityLevel == title
+                            ? Colors.blue
+                            : Colors.black,
                       ),
                     ),
                     const SizedBox(height: 5),
@@ -141,6 +149,11 @@ class ActivityLevelSelectionPage extends StatelessWidget {
                 ),
               ),
             ),
+            if (_activityLevel == title)
+              const Padding(
+                padding: EdgeInsets.only(right: 16.0),
+                child: Icon(Icons.check, color: Colors.blue),
+              ),
           ],
         ),
       ),

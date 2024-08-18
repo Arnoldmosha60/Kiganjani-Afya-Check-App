@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kiganjani_afya_check/main.dart';
+import 'package:kiganjani_afya_check/views/pages/Assessment/reasonToLooseWeight.dart';
 import 'package:kiganjani_afya_check/views/pages/Recommendation.dart';
 
 void main() {
@@ -23,7 +24,8 @@ class Targetedweight extends StatelessWidget {
 
 class TargetWeightPage extends StatefulWidget {
   @override
-  _TargetWeightPageState createState() => _TargetWeightPageState();
+  // ignore: library_private_types_in_public_api
+  _TargetWeightScreenState createState() => _TargetWeightScreenState();
 }
 
 class _TargetWeightPageState extends State<TargetWeightPage> {
@@ -33,7 +35,8 @@ class _TargetWeightPageState extends State<TargetWeightPage> {
   @override
   void initState() {
     super.initState();
-    _weightController.text = _weight.toStringAsFixed(1);
+    _targetWeight = widget.data.targetWeight ?? 70;
+    _weightController.text = _targetWeight.toStringAsFixed(1);
   }
 
   @override
@@ -44,8 +47,8 @@ class _TargetWeightPageState extends State<TargetWeightPage> {
 
   void _updateWeight(double value) {
     setState(() {
-      _weight = value;
-      _weightController.text = _weight.toStringAsFixed(1);
+      _targetWeight = value;
+      _weightController.text = _targetWeight.toStringAsFixed(1);
     });
   }
 
@@ -53,14 +56,15 @@ class _TargetWeightPageState extends State<TargetWeightPage> {
     final double? newWeight = double.tryParse(value);
     if (newWeight != null && newWeight >= 40 && newWeight <= 150) {
       setState(() {
-        _weight = newWeight;
-        // Update slider position and text field
-        _weightController.text = _weight.toStringAsFixed(1);
+        _targetWeight = newWeight;
+        _weightController.text = _targetWeight.toStringAsFixed(1);
       });
     }
   }
 
   void _submit() {
+    widget.data.targetWeight = _targetWeight;
+
     // Show Snackbar
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -68,11 +72,14 @@ class _TargetWeightPageState extends State<TargetWeightPage> {
         behavior: SnackBarBehavior.floating, // Ensures Snackbar is above other elements
       ),
     );
+
     // Navigate to the next page
     Future.delayed(Duration(seconds: 1), () {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Recommendation()),
+        MaterialPageRoute(
+          builder: (context) => ReasonToLooseWeight(data: widget.data),
+        ),
       );
     });
   }
@@ -80,7 +87,6 @@ class _TargetWeightPageState extends State<TargetWeightPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: const Text(
           'Chagua Uzito Wako wa Lengo',
@@ -154,16 +160,14 @@ class _TargetWeightPageState extends State<TargetWeightPage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        child: Container(
-          padding: const EdgeInsets.all(8.0),
-          child: FloatingActionButton.extended(
-            onPressed: _submit,
-            label: const Text('Tuma'),
-            icon: const Icon(Icons.check),
-            backgroundColor: Colors.blueAccent,
-            foregroundColor: Colors.white,
-          ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: FloatingActionButton.extended(
+          onPressed: _submit,
+          label: const Text('Tuma'),
+          icon: const Icon(Icons.check),
+          backgroundColor: Colors.blueAccent,
+          foregroundColor: Colors.white,
         ),
       ),
     );
