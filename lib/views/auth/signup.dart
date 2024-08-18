@@ -275,24 +275,30 @@ class _SignupPageState extends State<SignupPage> {
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () {
-                              if (_formSignupKey.currentState!.validate() &&
-                                  agreePersonalData) {
-                                final User user = User(
-                                  email: _emailController.text,
-                                  fullName: _fullNameController.text,
-                                  userPassword: _passwordController.text,
-                                );
-
-                                registerUser(user);
-                              } else {
-                                AnimatedSnackBar.material(
-                                  'Tafadhali jaza sehemu zote na kubali usindikaji wa taarifa za kibinafsi',
-                                  type: AnimatedSnackBarType.warning,
-                                  duration: const Duration(seconds: 5),
-                                  mobileSnackBarPosition:
-                                      MobileSnackBarPosition.bottom,
-                                ).show(context);
-                              }
+                              // if (_formSignupKey.currentState!.validate() &&
+                              //     agreePersonalData) {
+                              //   final User user = User(
+                              //     email: _emailController.text,
+                              //     fullName: _fullNameController.text,
+                              //     userPassword: _passwordController.text,
+                              //   );
+                              //
+                              //   registerUser(user);
+                              // } else {
+                              //   AnimatedSnackBar.material(
+                              //     'Tafadhali jaza sehemu zote na kubali usindikaji wa taarifa za kibinafsi',
+                              //     type: AnimatedSnackBarType.warning,
+                              //     duration: const Duration(seconds: 5),
+                              //     mobileSnackBarPosition:
+                              //         MobileSnackBarPosition.bottom,
+                              //   ).show(context);
+                              // }
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HomePage(),
+                                ),
+                              );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: lightColorScheme.primary,
